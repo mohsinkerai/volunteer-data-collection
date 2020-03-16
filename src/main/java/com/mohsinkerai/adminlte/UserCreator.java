@@ -5,22 +5,19 @@ import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.mohsinkerai.adminlte.jamatkhana.Jamatkhana;
 import com.mohsinkerai.adminlte.jamatkhana.JamatkhanaRepository;
 import com.mohsinkerai.adminlte.users.MyUser;
 import com.mohsinkerai.adminlte.users.MyUserService;
 import com.mohsinkerai.adminlte.users.authority.MyAuthority;
 import com.mohsinkerai.adminlte.users.authority.MyAuthorityRepository;
-import java.io.File;
+
 import java.io.InputStream;
 import java.util.List;
-import java.util.Optional;
+
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -45,8 +42,8 @@ public class UserCreator implements CommandLineRunner {
 
     for(LocalUser user : localUsers) {
       String jk = user.getJk();
-      Jamatkhana jk_instance = jamatkhanaRepository.findByName(jk).orElseGet(() -> {
-        return jamatkhanaRepository.save(new Jamatkhana(jk));
+      com.mohsinkerai.adminlte.jamatkhana.Council jk_instance = jamatkhanaRepository.findByName(jk).orElseGet(() -> {
+        return jamatkhanaRepository.save(new com.mohsinkerai.adminlte.jamatkhana.Council(jk));
       });
 
       MyAuthority user_authority = myAuthorityRepository.findByName("USER").get();

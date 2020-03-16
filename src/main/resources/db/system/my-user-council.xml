@@ -2,20 +2,15 @@
   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-  <changeSet id="health_facility_accessed-01" author="mohsin.kerai">
-    <createTable remarks="Health Facilities Accessed by Person"
-      tableName="health_facility_accessed">
+  <changeSet id="my_user_council-01" author="mohsin.kerai">
+    <createTable remarks="Table to Store Users Information for System Security"
+      tableName="my_user_council">
       <column autoIncrement="true" name="id" type="bigint">
         <constraints nullable="false" primaryKey="true" unique="true"/>
       </column>
       <column name="version" type="bigint" defaultValue="1"></column>
-
-      <column name="person_id" type="bigint">
-        <constraints nullable="false"/>
-      </column>
-      <column name="health_facility_id" type="bigint">
-        <constraints nullable="false"/>
-      </column>
+      <column name="my_user_id" type="bigint" />
+      <column name="council_id" type="bigint" />
 
       <!--AUDIT COLUMN-->
       <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_on" type="datetime">
@@ -32,14 +27,22 @@
       </column>
     </createTable>
   </changeSet>
-  <changeSet id="health_facility_accessed-02" author="mohsin.kerai">
-    <addForeignKeyConstraint baseTableName="health_facility_accessed" baseColumnNames="person_id"
-      constraintName="health_facility_accessed_person_id_fk"
-      referencedTableName="person" referencedColumnNames="id"/>
+  <changeSet id="my_user_council-02" author="mohsin.kerai">
+    <insert tableName="my_user_council">
+      <column name="my_user_id" value="1" />
+      <column name="council_id" value="1" />
+    </insert>
   </changeSet>
-  <changeSet id="health_facility_accessed-03" author="mohsin.kerai">
-    <addForeignKeyConstraint baseTableName="health_facility_accessed" baseColumnNames="health_facility_id"
-                             constraintName="health_facility_accessed_health_facility_id_fk"
-                             referencedTableName="health_facility" referencedColumnNames="id"/>
+  <changeSet id="my_user_council-03" author="mohsin.kerai">
+    <insert tableName="my_user_council">
+      <column name="my_user_id" value="1" />
+      <column name="council_id" value="2" />
+    </insert>
+  </changeSet>
+  <changeSet id="my_user_council-04" author="mohsin.kerai">
+    <insert tableName="my_user_council">
+      <column name="my_user_id" value="2" />
+      <column name="council_id" value="2" />
+    </insert>
   </changeSet>
 </databaseChangeLog>

@@ -70,7 +70,7 @@ public class PersonController extends SimpleBaseController<Person> {
   protected Map<String, Object> getAttributes() {
     MyUser currentUser = myUserService.getCurrentLoggedInUser();
     List<Disease> diseases = diseaseService.findAll();
-    return ImmutableMap.of("jks", currentUser.getJamatkhanas(), "diseases", diseases, "healthFacilities", healthFacilityService.findAll());
+    return ImmutableMap.of("jks", currentUser.getCouncils(), "diseases", diseases, "healthFacilities", healthFacilityService.findAll());
   }
 
   @RequestMapping(value = {"add/cnic", "cnic", "edit/cnic"})
@@ -93,7 +93,7 @@ public class PersonController extends SimpleBaseController<Person> {
   @RequestMapping(value = "/jk", method = RequestMethod.GET)
   public String jkList(Model model) {
     MyUser currentLoggedInUser = myUserService.getCurrentLoggedInUser();
-    List<Person> list = personService.findByJamatkhanaIn(currentLoggedInUser.getJamatkhanas());
+    List<Person> list = personService.findByJamatkhanaIn(currentLoggedInUser.getCouncils());
 
     int current = 1;
     int totalPages = 1;
@@ -126,7 +126,7 @@ public class PersonController extends SimpleBaseController<Person> {
     if (personExist != null || bindingResult.hasErrors()) {
       model.addAttribute("data", person);
       if (personExist != null) {
-        model.addAttribute("cnicError", "CNIC Already Exist with JK Name " + personExist.getJamatkhana().getName() + " and Person Name " + personExist.getPersonName() + " and form No " + personExist.getId());
+        model.addAttribute("cnicError", "CNIC Already Exist with JK Name " + personExist.getCouncil().getName() + " and Person Name " + personExist.getPersonName() + " and form No " + personExist.getId());
       }
       model.addAttribute("org.springframework.validation.BindingResult.data", bindingResult);
       model.addAttribute("urlPath", urlPath());

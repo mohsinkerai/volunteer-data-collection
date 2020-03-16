@@ -1,6 +1,5 @@
 package com.mohsinkerai.adminlte.report.validator;
 
-import com.mohsinkerai.adminlte.jamatkhana.Jamatkhana;
 import com.mohsinkerai.adminlte.users.MyUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -11,10 +10,10 @@ public class ReportValidator {
 
   private final MyUserService userService;
 
-  public boolean isJkAllowed(Jamatkhana jamatkhana) {
+  public boolean isJkAllowed(com.mohsinkerai.adminlte.jamatkhana.Council council) {
     return userService.getCurrentLoggedInUser()
-      .getJamatkhanas().stream()
-      .filter(jk -> jk.getName().equals(jamatkhana.getName()))
+      .getCouncils().stream()
+      .filter(jk -> jk.getName().equals(council.getName()))
       .findAny()
       .isPresent();
   }

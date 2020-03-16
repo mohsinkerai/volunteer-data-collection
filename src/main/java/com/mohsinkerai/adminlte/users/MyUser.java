@@ -3,7 +3,6 @@ package com.mohsinkerai.adminlte.users;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mohsinkerai.adminlte.base.BaseEntity;
-import com.mohsinkerai.adminlte.jamatkhana.Jamatkhana;
 import com.mohsinkerai.adminlte.users.authority.MyAuthority;
 import com.mohsinkerai.adminlte.users.authority.MyAuthoritySwitchDto;
 import lombok.*;
@@ -38,7 +37,7 @@ public class MyUser extends BaseEntity implements UserDetails {
   //  fetch = FetchType.LAZY
   @ManyToOne()
   @JoinColumn(name = "jamatkhana_id")
-  private Jamatkhana jamatkhana;
+  private com.mohsinkerai.adminlte.jamatkhana.Council council;
 
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
@@ -46,7 +45,7 @@ public class MyUser extends BaseEntity implements UserDetails {
     joinColumns = @JoinColumn(name = "jamatkhana_id"),
     inverseJoinColumns = @JoinColumn(name = "my_user_id")
   )
-  private Set<Jamatkhana> jamatkhanas = Sets.newHashSet();
+  private Set<com.mohsinkerai.adminlte.jamatkhana.Council> councils = Sets.newHashSet();
 
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(

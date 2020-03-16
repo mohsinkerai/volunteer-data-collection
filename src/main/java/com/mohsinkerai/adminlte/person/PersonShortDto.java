@@ -1,6 +1,5 @@
 package com.mohsinkerai.adminlte.person;
 
-import com.mohsinkerai.adminlte.jamatkhana.Jamatkhana;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class PersonShortDto {
 
   private Long id;
-  private Jamatkhana jamatkhana;
+  private com.mohsinkerai.adminlte.jamatkhana.Council council;
   private String personName;
   private String cnic;
 }

@@ -71,6 +71,6 @@
   </changeSet>
   <changeSet id="my-users-06" author="mohsin.kerai">
     <addForeignKeyConstraint baseTableName="my_user" baseColumnNames="jamatkhana_id" constraintName="my_user_jamatkhana_id_fk"
-      referencedTableName="jamatkhana" referencedColumnNames="id" />
+      referencedTableName="council" referencedColumnNames="id" />
   </changeSet>
 </databaseChangeLog>

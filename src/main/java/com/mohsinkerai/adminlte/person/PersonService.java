@@ -1,7 +1,6 @@
 package com.mohsinkerai.adminlte.person;
 
 import com.mohsinkerai.adminlte.base.SimpleBaseService;
-import com.mohsinkerai.adminlte.jamatkhana.Jamatkhana;
 import com.mohsinkerai.adminlte.report.dto.JamatkhanaSummaryDto;
 import com.mohsinkerai.adminlte.users.MyUser;
 import com.mohsinkerai.adminlte.users.MyUserService;
@@ -41,9 +40,9 @@ public class PersonService extends SimpleBaseService<Person> {
     }
 
     myUserService.getCurrentLoggedInUser()
-      .getJamatkhanas()
+      .getCouncils()
       .stream()
-      .filter(jk -> jk.getName().equals(person.getJamatkhana().getName()))
+      .filter(jk -> jk.getName().equals(person.getCouncil().getName()))
       .findAny().orElseThrow(() -> new RuntimeException("Invalid JK Selected !!"));
 
     return super.save(person);
@@ -56,26 +55,26 @@ public class PersonService extends SimpleBaseService<Person> {
     return ChronoUnit.DAYS.between(person.getCreatedDate(), LocalDate.now()) < 2 || hasRole(currentLoggedInUser, "ADMIN") || hasRole(currentLoggedInUser, "LEAD");
   }
 
-  public List<Person> findByJamatkhanaIn(Collection<Jamatkhana> jamatkhanas) {
-    return personRepository.findByJamatkhanaIn(jamatkhanas);
+  public List<Person> findByJamatkhanaIn(Collection<com.mohsinkerai.adminlte.jamatkhana.Council> councils) {
+    return personRepository.findByJamatkhanaIn(councils);
   }
 
-  public List<JamatkhanaSummaryDto> findByJamatkhanaAndDateBetween(Jamatkhana jamatkhana, LocalDate fromCreatedDate, LocalDate toCreatedDate) {
-    return personRepository.findByJamatkhanaAndDateBetween(jamatkhana.getId(), fromCreatedDate, toCreatedDate);
+  public List<JamatkhanaSummaryDto> findByJamatkhanaAndDateBetween(com.mohsinkerai.adminlte.jamatkhana.Council council, LocalDate fromCreatedDate, LocalDate toCreatedDate) {
+    return personRepository.findByJamatkhanaAndDateBetween(council.getId(), fromCreatedDate, toCreatedDate);
   }
 
   public List<JamatkhanaSummaryDto> findBySummaryPerJamatkhanaBetween(LocalDate fromCreatedDate, LocalDate toCreatedDate) {
     return personRepository.findBySummaryPerJamatkhanaBetween(fromCreatedDate, toCreatedDate);
   }
 
-  public List<Person> findByJamatkhanaAndCreatedDateBetween(Jamatkhana jamatkhana, LocalDate fromCreatedDate, LocalDate toCreatedDate) {
-    return personRepository.findByJamatkhanaAndCreatedDateBetween(jamatkhana, fromCreatedDate, toCreatedDate);
+  public List<Person> findByJamatkhanaAndCreatedDateBetween(com.mohsinkerai.adminlte.jamatkhana.Council council, LocalDate fromCreatedDate, LocalDate toCreatedDate) {
+    return personRepository.findByJamatkhanaAndCreatedDateBetween(council, fromCreatedDate, toCreatedDate);
   }
 
   public List<PersonShortDto> findByCnic(String cnic) {
     return personRepository.findByCnic(cnic)
       .stream()
-      .map(p -> new PersonShortDto(p.getId(), p.getJamatkhana(), p.getName(), p.getCnic()))
+      .map(p -> new PersonShortDto(p.getId(), p.getCouncil(), p.getName(), p.getCnic()))
       .collect(Collectors.toList());
   }
 

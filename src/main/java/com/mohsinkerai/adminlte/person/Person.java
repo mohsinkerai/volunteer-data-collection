@@ -1,26 +1,13 @@
 package com.mohsinkerai.adminlte.person;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import com.mohsinkerai.adminlte.base.BaseEntity;
 import com.mohsinkerai.adminlte.config.ProjectConstant;
-import com.mohsinkerai.adminlte.jamatkhana.Jamatkhana;
-import com.mohsinkerai.adminlte.lookups.disease.Disease;
-import com.mohsinkerai.adminlte.lookups.health_facility.HealthFacility;
 import lombok.Data;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
-import java.sql.Date;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
 
 @Data
 @Entity
@@ -48,7 +35,7 @@ public class Person extends BaseEntity {
 
   @ManyToOne
   @JoinColumn(name = "council_id")
-  private Jamatkhana jamatkhana;
+  private com.mohsinkerai.adminlte.jamatkhana.Council council;
 
   @DateTimeFormat(pattern = ProjectConstant.DATE_HTML_FORMAT)
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = ProjectConstant.DATE_FORMAT)

@@ -1,4 +1,4 @@
-package com.mohsinkerai.adminlte.jamatkhana;
+package com.mohsinkerai.adminlte.council;
 
 import com.google.common.collect.Maps;
 import com.mohsinkerai.adminlte.base.SimpleBaseController;
@@ -10,14 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(JamatkhanaController.URL_PATH)
+@RequestMapping(CouncilController.URL_PATH)
 @PreAuthorize("hasAuthority('ADMIN')")
-public class JamatkhanaController extends SimpleBaseController<Jamatkhana> {
+public class CouncilController extends SimpleBaseController<Council> {
 
-  public static final String URL_PATH = "jamatkhana";
+  public static final String URL_PATH = "council";
 
-  protected JamatkhanaController(
-    SimpleBaseService<Jamatkhana> simpleBaseService) {
+  protected CouncilController(
+    SimpleBaseService<Council> simpleBaseService) {
     super(simpleBaseService);
   }
 
@@ -32,8 +32,8 @@ public class JamatkhanaController extends SimpleBaseController<Jamatkhana> {
   }
 
   @Override
-  protected Jamatkhana getEmptyObject() {
-    return new Jamatkhana();
+  protected Council getEmptyObject() {
+    return new Council();
   }
 
   @Override

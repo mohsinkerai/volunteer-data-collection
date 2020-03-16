@@ -2,7 +2,6 @@ package com.mohsinkerai.adminlte.report;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.mohsinkerai.adminlte.jamatkhana.Jamatkhana;
 import com.mohsinkerai.adminlte.person.Person;
 import com.mohsinkerai.adminlte.person.PersonService;
 import com.mohsinkerai.adminlte.report.dto.JamatkhanaAndDateDto;
@@ -122,7 +121,7 @@ public class ReportController {
   public String findFormsFilledByJamatkhana(Model model) {
     JamatkhanaAndDateDto dto = new JamatkhanaAndDateDto(null, LocalDate.now(), LocalDate.now());
 
-    Set<Jamatkhana> jks = userService.getCurrentLoggedInUser().getJamatkhanas();
+    Set<com.mohsinkerai.adminlte.jamatkhana.Council> jks = userService.getCurrentLoggedInUser().getCouncils();
 
     model.addAttribute("jks", jks);
     model.addAttribute("data", dto);
@@ -136,17 +135,17 @@ public class ReportController {
   public HttpEntity<byte[]> getFormsFilledByUsername(JamatkhanaAndDateDto jamatkhanaAndDateDto, Model model) throws JRException {
     LocalDate fromDate = jamatkhanaAndDateDto.getFromDate();
     LocalDate toDate = jamatkhanaAndDateDto.getToDate();
-    Jamatkhana jamatkhana = jamatkhanaAndDateDto.getJamatkhana();
+    com.mohsinkerai.adminlte.jamatkhana.Council council = jamatkhanaAndDateDto.getCouncil();
 
-    if (!reportValidator.isJkAllowed(jamatkhana)) {
+    if (!reportValidator.isJkAllowed(council)) {
       throw new RuntimeException("Jamatkhana you are tring to search is not allowed");
     }
 
     List<JamatkhanaSummaryDto> jamatkhanaSummary = personService
-      .findByJamatkhanaAndDateBetween(jamatkhana, fromDate, toDate);
+      .findByJamatkhanaAndDateBetween(council, fromDate, toDate);
 
     ImmutableMap<String, Object> params = ImmutableMap.of(
-      "REPORT_NAME", "Entries in JK " + jamatkhana.getName(),
+      "REPORT_NAME", "Entries in JK " + council.getName(),
       "FROM_DATE", Date.valueOf(fromDate),
       "TO_DATE", Date.valueOf(toDate));
 
@@ -164,7 +163,7 @@ public class ReportController {
   public String findFormsFilledByJamatkhanaList(Model model) {
     JamatkhanaAndDateDto dto = new JamatkhanaAndDateDto(null, LocalDate.now(), LocalDate.now());
 
-    Set<Jamatkhana> jks = userService.getCurrentLoggedInUser().getJamatkhanas();
+    Set<com.mohsinkerai.adminlte.jamatkhana.Council> jks = userService.getCurrentLoggedInUser().getCouncils();
 
     model.addAttribute("jks", jks);
     model.addAttribute("data", dto);
@@ -179,17 +178,17 @@ public class ReportController {
     throws JRException {
     LocalDate fromDate = jamatkhanaAndDateDto.getFromDate();
     LocalDate toDate = jamatkhanaAndDateDto.getToDate();
-    Jamatkhana jamatkhana = jamatkhanaAndDateDto.getJamatkhana();
+    com.mohsinkerai.adminlte.jamatkhana.Council council = jamatkhanaAndDateDto.getCouncil();
 
-    if (!reportValidator.isJkAllowed(jamatkhana)) {
+    if (!reportValidator.isJkAllowed(council)) {
       throw new RuntimeException("Jamatkhana you are tring to search is not allowed");
     }
 
-    List<Person> persons = personService.findByJamatkhanaAndCreatedDateBetween(jamatkhana, fromDate, toDate);
+    List<Person> persons = personService.findByJamatkhanaAndCreatedDateBetween(council, fromDate, toDate);
     log.info("Got DTO {}, persons {}", jamatkhanaAndDateDto, persons);
 
     ImmutableMap<String, Object> params = ImmutableMap.of(
-      "REPORT_NAME", "Persons in " + jamatkhana,
+      "REPORT_NAME", "Persons in " + council,
       "FROM_DATE", Date.valueOf(fromDate),
       "TO_DATE", Date.valueOf(toDate));
 
@@ -208,17 +207,17 @@ public class ReportController {
     throws JRException {
     LocalDate fromDate = jamatkhanaAndDateDto.getFromDate();
     LocalDate toDate = jamatkhanaAndDateDto.getToDate();
-    Jamatkhana jamatkhana = jamatkhanaAndDateDto.getJamatkhana();
+    com.mohsinkerai.adminlte.jamatkhana.Council council = jamatkhanaAndDateDto.getCouncil();
 
-    if (!reportValidator.isJkAllowed(jamatkhana)) {
+    if (!reportValidator.isJkAllowed(council)) {
       throw new RuntimeException("Jamatkhana you are tring to search is not allowed");
     }
 
-    List<Person> persons = personService.findByJamatkhanaAndCreatedDateBetween(jamatkhana, fromDate, toDate);
+    List<Person> persons = personService.findByJamatkhanaAndCreatedDateBetween(council, fromDate, toDate);
     log.info("Got DTO {}, persons {}", jamatkhanaAndDateDto, persons);
 
     ImmutableMap<String, Object> params = ImmutableMap.of(
-      "REPORT_NAME", "Persons in " + jamatkhana,
+      "REPORT_NAME", "Persons in " + council,
       "FROM_DATE", Date.valueOf(fromDate),
       "TO_DATE", Date.valueOf(toDate));
 
