@@ -20,17 +20,6 @@
         <li th:classappend="${#httpServletRequest.requestURI.startsWith('/person/add')? 'active':''}"><a th:href="@{/person/add}"><i class="fa fa-circle-o"></i>Add Person</a></li>
       </ul>
     </li>
-    <li class="treeview" th:classappend="${#httpServletRequest.requestURI.startsWith('/lookup')? 'active':''}" sec:authorize="hasAuthority('ADMIN')" >
-      <a href="#">
-        <i class="fa fa-folder"></i>
-        <span>Lookup</span>
-        <i class="fa fa-angle-left pull-right"></i>
-      </a>
-      <ul class="treeview-menu">
-        <li th:classappend="${#httpServletRequest.requestURI.startsWith('/lookup/disease')? 'active':''}"><a th:href="@{/lookup/disease}"><i class="fa fa-circle-o"></i> Disease</a></li>
-        <li th:classappend="${#httpServletRequest.requestURI.startsWith('/lookup/health-facility')? 'active':''}"><a th:href="@{/lookup/disease}"><i class="fa fa-circle-o"></i> Health Facility</a></li>
-      </ul>
-    </li>
     <li class="treeview" th:classappend="${#httpServletRequest.requestURI.startsWith('/customers')? 'active':''}"  sec:authorize="hasAuthority('LEAD')">
       <a href="#">
         <i class="fa fa-folder"></i>
