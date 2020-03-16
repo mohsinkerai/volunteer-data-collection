@@ -5,7 +5,7 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
   <!--SYSTEM-->
-  <include file="business/council.xml" relativeToChangelogFile="true"/>
+  <include file="business/jamatkhana.xml" relativeToChangelogFile="true"/>
   <include file="system/my-users.xml" relativeToChangelogFile="true"/>
   <include file="system/my-authority.xml" relativeToChangelogFile="true"/>
   <include file="system/my-user-authority.xml" relativeToChangelogFile="true"/>

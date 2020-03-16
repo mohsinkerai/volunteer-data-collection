@@ -68,10 +68,10 @@
   </changeSet>
   <changeSet id="person-02" author="mohsin.kerai">
     <addColumn tableName="person">
-      <column name="council_id" type="bigint" beforeColumn="created_on"></column>
+      <column name="jamatkhana_id" type="bigint" beforeColumn="created_on"></column>
     </addColumn>
-    <addForeignKeyConstraint baseTableName="person" baseColumnNames="council_id"
-      constraintName="person_council_id_fk"
-      referencedTableName="council" referencedColumnNames="id"/>
+    <addForeignKeyConstraint baseTableName="person" baseColumnNames="jamatkhana_id"
+      constraintName="person_jamatkhana_id_fk"
+      referencedTableName="jamatkhana" referencedColumnNames="id"/>
   </changeSet>
 </databaseChangeLog>

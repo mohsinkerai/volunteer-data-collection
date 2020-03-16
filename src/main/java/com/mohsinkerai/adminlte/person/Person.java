@@ -47,7 +47,7 @@ public class Person extends BaseEntity {
   private String referToHospital;
 
   @ManyToOne
-  @JoinColumn(name = "council_id")
+  @JoinColumn(name = "jamatkhana_id")
   private Jamatkhana jamatkhana;
 
   @DateTimeFormat(pattern = ProjectConstant.DATE_HTML_FORMAT)
