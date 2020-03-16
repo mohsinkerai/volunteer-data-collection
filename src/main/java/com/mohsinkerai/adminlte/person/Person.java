@@ -32,66 +32,25 @@ public class Person extends BaseEntity {
 
   @DateTimeFormat(pattern = "dd/MM/yyyy")
   private LocalDate dateOfBirth;
-  private String residentialAddress;
   private String contactNumber;
-  private int houseHoldMembersCount;
+  private String residentialAddress;
 
-  @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(
-    name = "health_facility_accessed",
-    joinColumns = @JoinColumn(name = "person_id"),
-    inverseJoinColumns = @JoinColumn(name = "health_facility_id")
-  )
-  private Set<HealthFacility> healthFacilities = Sets.newHashSet();
+  private String travelHistory;
+  private String contactHistory;
+  private String fever;
+  private String cough;
+  private String shortnessOfBreath;
+  private String suspectStable; // Fever/Cough without shortness of breath
+  private String suspectUnstable; // Fever/Cough without shortness of breath
 
-  @Size(min = 0, max = 15)
-  private String otherMedicalFacilityAccessed;
-
-  @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(
-    name = "disease_diagnosed",
-    joinColumns = @JoinColumn(name = "person_id"),
-    inverseJoinColumns = @JoinColumn(name = "disease_id")
-  )
-  private Set<Disease> diseases = Sets.newHashSet();
-
-  @Max(1)
-  @Min(0)
-  // In the last 12 months have you visited doctor / hospital for medical checkup?
-  private int visitedDoctorForCheckup;
-
-  @Max(1)
-  @Min(0)
-  // Do you smoke?
-  private int smoke;
-
-  @Max(1)
-  @Min(0)
-  // Insurance Coverage
-  private int insuranceCoverage;
-
-  // Self Covered Insurance
-  @Type(type = "org.hibernate.type.NumericBooleanType")
-  private boolean selfInsuranceCoverage;
-
-  // Employer Covered Insurance
-  @Type(type = "org.hibernate.type.NumericBooleanType")
-  private boolean employerInsuranceCoverage;
-
-  // Do you have any of the following disabilities?
-  @ElementCollection
-  @CollectionTable(name = "disability", joinColumns = @JoinColumn(name = "person_id"))
-  @Column(name = "disability")
-  private List<String> disability = Lists.newArrayList();
-
-  private String otherDisability;
+  private String isolationAtHome;
+  private String referToHospital;
 
   @ManyToOne
-  @JoinColumn(name = "jamatkhana_id")
+  @JoinColumn(name = "council_id")
   private Jamatkhana jamatkhana;
 
   @DateTimeFormat(pattern = ProjectConstant.DATE_HTML_FORMAT)
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = ProjectConstant.DATE_FORMAT)
   private LocalDate createdDate;
-  private String uuid;
 }
