@@ -9,7 +9,7 @@ Deployment Instructions
 ---
 This jar is marked as executable true.
 
-- Copy it to remote server (Linux)
+- Copy build (jar file) to remote server (Linux)
 - Create a file called /etc/systemd/system/hbp.service with following contents:
 ```
 [Unit]
