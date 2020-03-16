@@ -2,9 +2,6 @@ package com.mohsinkerai.adminlte.person;
 
 import com.google.common.collect.ImmutableMap;
 import com.mohsinkerai.adminlte.base.SimpleBaseController;
-import com.mohsinkerai.adminlte.lookups.disease.Disease;
-import com.mohsinkerai.adminlte.lookups.disease.DiseaseService;
-import com.mohsinkerai.adminlte.lookups.health_facility.HealthFacilityService;
 import com.mohsinkerai.adminlte.users.MyUser;
 import com.mohsinkerai.adminlte.users.MyUserService;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -30,19 +27,13 @@ public class PersonController extends SimpleBaseController<Person> {
 
   private final MyUserService myUserService;
   private final PersonService personService;
-  private final DiseaseService diseaseService;
-  private final HealthFacilityService healthFacilityService;
 
   protected PersonController(
     PersonService personService,
-    MyUserService myUserService,
-    DiseaseService diseaseService,
-    HealthFacilityService healthFacilityService) {
+    MyUserService myUserService) {
     super(personService);
-    this.healthFacilityService = healthFacilityService;
     this.myUserService = myUserService;
     this.personService = personService;
-    this.diseaseService = diseaseService;
   }
 
   @InitBinder
@@ -69,8 +60,7 @@ public class PersonController extends SimpleBaseController<Person> {
   @Override
   protected Map<String, Object> getAttributes() {
     MyUser currentUser = myUserService.getCurrentLoggedInUser();
-    List<Disease> diseases = diseaseService.findAll();
-    return ImmutableMap.of("jks", currentUser.getJamatkhanas(), "diseases", diseases, "healthFacilities", healthFacilityService.findAll());
+    return ImmutableMap.of("jks", currentUser.getJamatkhanas());
   }
 
   @RequestMapping(value = {"add/cnic", "cnic", "edit/cnic"})

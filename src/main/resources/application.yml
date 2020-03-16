@@ -1,14 +1,14 @@
 spring:
   application:
-    name: hbp-card-portal
+    name: data-collection-portal
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    db: data_collection_hb3
+    db: data_collection
     host: localhost
     port: 3306
     url: jdbc:mysql://${spring.datasource.host}:${spring.datasource.port}/${spring.datasource.db}?createDatabaseIfNotExist=true
-    username: root
-    password:
+    username: mohsin
+    password: password
     tomcat:
       initial-size: 6
       max-wait: 20000

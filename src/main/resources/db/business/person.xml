@@ -38,6 +38,7 @@
       <column name="suspect_unstable" type="varchar(400)" />
       <column name="isolation_at_home" type="varchar(400)" />
       <column name="refer_to_hospital" type="varchar(400)" />
+      <column name="shortness_of_breath" type="varchar(400)" />
 
       <column name="created_date" type="date"></column>
 

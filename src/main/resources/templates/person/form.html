@@ -29,8 +29,6 @@
         <input type="hidden" th:field="*{createdBy}"/>
         <input type="hidden" th:field="*{createdOn}"/>
         <input type="hidden" th:field="*{createdDate}"/>
-        <input type="hidden" th:field="*{uuid}"/>
-
 
         <div class="form-group">
           <label for="cnic">CNIC</label>
@@ -92,102 +90,88 @@
         </div>
 
         <div class="form-group">
-          <label for="visitedDoctorForCheckup">In the last 12 months have you visited doctor / hospital for medical checkup?</label>
-          <select th:field="*{visitedDoctorForCheckup}" id="visitedDoctorForCheckup" class="form-control">
+          <label for="travelHistory">Travel History?</label>
+          <select th:field="*{travelHistory}" id="travelHistory" class="form-control">
             <option value="0">No</option>
             <option value="1">Yes</option>
           </select>
-          <p class="text-danger" th:if="${#fields.hasErrors('visitedDoctorForCheckup')}"
-             th:errors="*{visitedDoctorForCheckup}"></p>
-          <p class="text-danger" id="healthFacilitiesRequiredError" hidden="true">Health Facilities Should be Selected Below Before Moving Forward</p>
+          <p class="text-danger" th:if="${#fields.hasErrors('travelHistory')}"
+             th:errors="*{travelHistory}"></p>
         </div>
-
-        <div class="form-group" id="mca" th:hidden="${data.visitedDoctorForCheckup}==0">
-          <label>If yes, type of facility accessed? (Multiple Selection)</label>
-          <div class="checkbox" th:each="hf : ${healthFacilities}">
-            <label th:for="${hf.name}">
-              <input th:id="${'hf'+hf.name}" th:classappend="${data.visitedDoctorForCheckup}==1? 'visitDoctorRequired': ''" type="checkbox" th:checked="${#sets.contains(data.healthFacilities,hf)}" name="healthFacilities" th:value="${hf.id}">
-              <span th:text="${hf.name}"></span>
-            </label>
-          </div>
-        </div>
-
-        <div id="HF-OTHER" class="form-group" hidden="true">
-          <label for="otherMedicalFacilityAccessed">If Other Medical Facilities Accessed</label>
-          <input type="text" placeholder="Other Medical Facilities Accessed" class="form-control" th:field="*{otherMedicalFacilityAccessed}" id="otherMedicalFacilityAccessed" maxlength="15" data-error="otherMedicalFacilityAccessed should be between 0-15"/>
-          <p class="text-danger" th:if="${#fields.hasErrors('otherMedicalFacilityAccessed')}" th:errors="*{otherMedicalFacilityAccessed}"></p>
-          <div class="help-block with-errors"></div>
-        </div>
-
         <div class="form-group">
-          <label>Have you been diagnosed, hospitalized or prescribed medicine for any disease? (Tick where appropriate)</label>
-          <div class="checkbox" th:each="ds : ${diseases}">
-            <label th:for="${ds.name}">
-              <input th:id="${ds.name}" type="checkbox" th:checked="${#sets.contains(data.diseases,ds)}" name="diseases" th:value="${ds.id}">
-              <span th:text="${ds.name}"></span>
-            </label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="insuranceCoverage">Do you have health insurance coverage?</label>
-          <select th:field="*{insuranceCoverage}" id="insuranceCoverage" class="form-control">
+          <label for="contactHistory">Contact History?</label>
+          <select th:field="*{contactHistory}" id="contactHistory" class="form-control">
             <option value="0">No</option>
             <option value="1">Yes</option>
           </select>
-          <p class="text-danger" th:if="${#fields.hasErrors('insuranceCoverage')}"
-             th:errors="*{insuranceCoverage}"></p>
-          <p class="text-danger" id="insuranceRequiredError" hidden="true">Self or Employer Insurance Should be Selected Below Before Moving Forward</p>
-        </div>
-        <div class="form-group" id="hic" th:hidden="${data.insuranceCoverage}==0">
-          <label>Insurance Coverage Details</label>
-          <div class="checkbox">
-            <label for="selfInsurance"><input id="selfInsurance" th:classappend="${data.insuranceCoverage}==1? 'insuranceRequired': ''" type="checkbox" th:field="*{selfInsuranceCoverage}" /> Self Insurance Coverage
-            </label>
-          </div>
-          <div class="checkbox">
-            <label for="employerInsuranceCoverage"><input id="employerInsuranceCoverage" th:classappend="${data.insuranceCoverage}==1? 'insuranceRequired': ''"  type="checkbox" th:field="*{employerInsuranceCoverage}" /> Employer Insurance Coverage
-            </label>
-          </div>
+          <p class="text-danger" th:if="${#fields.hasErrors('contactHistory')}"
+             th:errors="*{contactHistory}"></p>
         </div>
 
         <div class="form-group">
-          <label>Do you have any of following disabilities?</label>
-          <div class="checkbox">
-            <label for="BLIND"><input id="BLIND" type="checkbox" value="BLIND" name="disability" th:checked="${#sets.contains(data.disability,'BLIND')}" /> Blindness
-            </label>
-          </div>
-          <div class="checkbox">
-            <label for="HEARING"><input id="HEARING" type="checkbox" value="HEARING" name="disability" th:checked="${#sets.contains(data.disability,'HEARING')}" /> Hearing Difficulty
-            </label>
-          </div>
-          <div class="checkbox">
-            <label for="AMPUTATION"><input id="AMPUTATION" type="checkbox" value="AMPUTATION" name="disability" th:checked="${#sets.contains(data.disability,'AMPUTATION')}" /> Amputation
-            </label>
-          </div>
-          <div class="checkbox">
-            <label for="DIS-OTHER"><input id="DIS-OTHER" type="checkbox" value="OTHER" name="disability" th:checked="${#sets.contains(data.disability,'OTHER')}" /> Others
-            </label>
-          </div>
-          <span id="otherDisabilitySpan" hidden="true">
-            <label for="name">Other Disability</label>
-            <input type="text" class="form-control" th:field="*{otherDisability}" maxlength="20" minlength="4"
-                   placeholder="Other Disability" id="otherDisability" data-error="If Others is Selected, this is Required"/>
-            <p class="text-danger" th:if="${#fields.hasErrors('otherDisability')}"
-               th:errors="*{otherDisability}"></p>
-            <div class="help-block with-errors"></div>
-          </span>
-        </div>
-
-        <div class="form-group">
-          <label for="smoke">Do you smoke?</label>
-          <select th:field="*{smoke}" id="smoke" class="form-control">
+          <label for="fever">Fever?</label>
+          <select th:field="*{fever}" id="fever" class="form-control">
             <option value="0">No</option>
             <option value="1">Yes</option>
           </select>
-          <p class="text-danger" th:if="${#fields.hasErrors('smoke')}"
-             th:errors="*{smoke}"></p>
+          <p class="text-danger" th:if="${#fields.hasErrors('fever')}"
+             th:errors="*{fever}"></p>
         </div>
+        <div class="form-group">
+          <label for="cough">Cough?</label>
+          <select th:field="*{cough}" id="cough" class="form-control">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+          <p class="text-danger" th:if="${#fields.hasErrors('cough')}"
+             th:errors="*{cough}"></p>
+        </div>
+        <div class="form-group">
+          <label for="shortnessOfBreath">shortnessOfBreath?</label>
+          <select th:field="*{shortnessOfBreath}" id="shortnessOfBreath" class="form-control">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+          <p class="text-danger" th:if="${#fields.hasErrors('shortnessOfBreath')}"
+             th:errors="*{shortnessOfBreath}"></p>
+        </div>
+        <div class="form-group">
+          <label for="suspectStable">Suspect Stable? (Fever/Cough without shortness of breath)</label>
+          <select th:field="*{suspectStable}" id="suspectStable" class="form-control">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+          <p class="text-danger" th:if="${#fields.hasErrors('suspectStable')}"
+             th:errors="*{suspectStable}"></p>
+        </div>
+        <div class="form-group">
+          <label for="suspectUnstable">Suspect Unstable? (Fever/Cough without shortness of breath)</label>
+          <select th:field="*{suspectUnstable}" id="suspectUnstable" class="form-control">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+          <p class="text-danger" th:if="${#fields.hasErrors('suspectUnstable')}"
+             th:errors="*{suspectUnstable}"></p>
+        </div>
+        <div class="form-group">
+          <label for="isolationAtHome">Isolation At Home?</label>
+          <select th:field="*{isolationAtHome}" id="isolationAtHome" class="form-control">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+          <p class="text-danger" th:if="${#fields.hasErrors('isolationAtHome')}"
+             th:errors="*{isolationAtHome}"></p>
+        </div>
+        <div class="form-group">
+          <label for="referToHospital">Refer To Hospital?</label>
+          <select th:field="*{referToHospital}" id="referToHospital" class="form-control">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+          <p class="text-danger" th:if="${#fields.hasErrors('referToHospital')}"
+             th:errors="*{referToHospital}"></p>
+        </div>
+
       </div>
       <div class="box-footer">
         <button id="submit" type="submit" class="btn btn-primary">Save</button>
@@ -200,19 +184,6 @@
 
   $(document).ready(function () {
     $('#myform').validator()
-  });
-
-  $(document).ready(function() {
-    $('#DIS-OTHER').click(function() {
-      if( $(this).is(':checked')) {
-        $("#otherDisabilitySpan").show();
-        $('#otherDisabilitySpan').attr('required', '');
-      } else {
-        $("#otherDisabilitySpan").hide();
-        $('#otherDisabilitySpan').removeAttr('required');
-        $('#otherDisability').val('');
-      }
-    });
   });
 
   $(document).ready(function() {
@@ -239,60 +210,6 @@
     }});
     $("#dateOfBirth").mask('00/00/0000');
 
-    if($('#hfOthers').is(':checked')) {
-      $("#HF-OTHER").show();
-    }
-
-    $('#hfOthers').click(function() {
-      if($(this).is(':checked')) {
-        $("#HF-OTHER").show();
-        $("#HF-OTHER").attr('required', '');
-      } else {
-        $("#HF-OTHER").hide();
-        $('#HF-OTHER').removeAttr('required');
-        $('#otherMedicalFacilityAccessed').val('');
-      }
-    });
-
-    $("#visitedDoctorForCheckup").on('change', function() {
-      var e = this;
-      var className = 'visitDoctorRequired';
-      // console.log($(e).val())
-      if ($(e).val() == "1") {
-        $('#mca').show();
-        $("#mca > div > label > input").each(function(hosp, index) {
-          $(index).addClass(className);
-        });
-      } else {
-        $('#mca').hide();
-        $("#mca > div > label > input").each(function(hosp, index) {
-          $(index).attr('checked', false);
-          $(index).removeClass(className);
-        });
-        $("#HF-OTHER").hide();
-        $('#HF-OTHER').removeAttr('required');
-        $('#otherMedicalFacilityAccessed').val('');
-      }
-    });
-
-    $("#insuranceCoverage").on('change', function() {
-      var e = this;
-      var className = 'insuranceRequired';
-      // console.log($(e).val())
-      if ($(e).val() == "1") {
-        $('#hic').show();
-        $("#hic > div > label > input").each(function(hosp, index) {
-          $(index).addClass(className);
-        });
-      } else {
-        $('#hic').hide();
-        $("#hic > div > label > input").each(function(hosp, index) {
-          $(index).attr('checked', false);
-          $(index).removeClass(className);
-        });
-      }
-    });
-
     var date = new Date();
 
     $("#dateOfBirth").datepicker({
@@ -305,20 +222,6 @@
 
     $('#myform').on('submit', function(e) {
       $('#submit').attr('disabled', true);
-      $('#insuranceRequiredError').hide();
-      $('#healthFacilitiesRequiredError').hide();
-      if($(".visitDoctorRequired").length > 0 && $(".visitDoctorRequired:checkbox:checked").length < 1) {
-        $('#healthFacilitiesRequiredError').show();
-        $('#submit').attr('disabled', false);
-        return false;
-      }
-      if($(".insuranceRequired").length > 0 && $(".insuranceRequired:checkbox:checked").length < 1) {
-        $('#insuranceRequiredError').show();
-        $('#submit').attr('disabled', false);
-        return false;
-      }
-      return true;
-      // Return True if there is no element with this class, or if there are elemennts so at least onen element should be checked
     });
 
     $("#cnic").on('blur', function() {

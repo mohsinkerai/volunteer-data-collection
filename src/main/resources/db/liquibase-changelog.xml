@@ -15,9 +15,4 @@
 
   <!--BUSINESS-->
   <include file="business/person.xml" relativeToChangelogFile="true"/>
-<!--  <include file="business/disability.xml" relativeToChangelogFile="true"/>-->
-<!--  <include file="business/disease.xml" relativeToChangelogFile="true"/>-->
-<!--  <include file="business/health_facility.xml" relativeToChangelogFile="true"/>-->
-<!--  <include file="business/disease_diagnosed.xml" relativeToChangelogFile="true"/>-->
-<!--  <include file="business/health_facility_accessed.xml" relativeToChangelogFile="true"/>-->
 </databaseChangeLog>

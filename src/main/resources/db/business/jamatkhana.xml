@@ -2,9 +2,9 @@
   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-  <changeSet id="council-01" author="mohsin.kerai">
-    <createTable remarks="Table to Store Council Name for FK"
-      tableName="council">
+  <changeSet id="jamatkhana-01" author="mohsin.kerai">
+    <createTable remarks="Table to Store jamatkhana Name for FK"
+      tableName="jamatkhana">
       <column autoIncrement="true" name="id" type="bigint">
         <constraints nullable="false" primaryKey="true" unique="true"/>
       </column>
@@ -28,11 +28,11 @@
       </column>
     </createTable>
   </changeSet>
-  <changeSet id="council-02" author="mohsin.kerai">
-    <insert tableName="council">
+  <changeSet id="jamatkhana-02" author="mohsin.kerai">
+    <insert tableName="jamatkhana">
       <column name="name" value="Karimabad" />
     </insert>
-    <insert tableName="council">
+    <insert tableName="jamatkhana">
       <column name="name" value="Garden" />
     </insert>
   </changeSet>
