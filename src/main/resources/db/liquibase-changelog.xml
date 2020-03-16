@@ -11,7 +11,7 @@
   <include file="system/my-user-authority.xml" relativeToChangelogFile="true"/>
   <include file="system/session.xml" relativeToChangelogFile="true" />
   <include file="system/session-attributes.xml" relativeToChangelogFile="true" />
-  <include file="system/my-user-council.xml" relativeToChangelogFile="true" />
+  <include file="system/my-user-jamatkhana.xml" relativeToChangelogFile="true" />
 
   <!--BUSINESS-->
   <include file="business/person.xml" relativeToChangelogFile="true"/>

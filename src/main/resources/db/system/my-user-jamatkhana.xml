@@ -1,0 +1,48 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+  <changeSet id="my_user_jamatkhana-01" author="mohsin.kerai">
+    <createTable remarks="Table to Store Users Information for System Security"
+      tableName="my_user_jamatkhana">
+      <column autoIncrement="true" name="id" type="bigint">
+        <constraints nullable="false" primaryKey="true" unique="true"/>
+      </column>
+      <column name="version" type="bigint" defaultValue="1"></column>
+      <column name="my_user_id" type="bigint" />
+      <column name="jamatkhana_id" type="bigint" />
+
+      <!--AUDIT COLUMN-->
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_on" type="datetime">
+        <constraints nullable="false" unique="false"/>
+      </column>
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="updated_on" type="datetime">
+        <constraints nullable="false" unique="false"/>
+      </column>
+      <column defaultValueComputed="null" name="created_by" type="varchar(255)">
+        <constraints nullable="true" unique="false"/>
+      </column>
+      <column defaultValueComputed="null" name="updated_by" type="varchar(255)">
+        <constraints nullable="true" unique="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet id="my_user_jamatkhana-02" author="mohsin.kerai">
+    <insert tableName="my_user_jamatkhana">
+      <column name="my_user_id" value="1" />
+      <column name="jamatkhana_id" value="1" />
+    </insert>
+  </changeSet>
+  <changeSet id="my_user_jamatkhana-03" author="mohsin.kerai">
+    <insert tableName="my_user_jamatkhana">
+      <column name="my_user_id" value="1" />
+      <column name="jamatkhana_id" value="2" />
+    </insert>
+  </changeSet>
+  <changeSet id="my_user_jamatkhana-04" author="mohsin.kerai">
+    <insert tableName="my_user_jamatkhana">
+      <column name="my_user_id" value="2" />
+      <column name="jamatkhana_id" value="2" />
+    </insert>
+  </changeSet>
+</databaseChangeLog>

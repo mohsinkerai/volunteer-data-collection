@@ -1,14 +1,14 @@
-package com.mohsinkerai.adminlte.council;
+package com.mohsinkerai.adminlte.jamatkhana;
 
 import com.mohsinkerai.adminlte.base.SimpleBaseRepository;
 import com.mohsinkerai.adminlte.base.SimpleBaseService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CouncilService extends SimpleBaseService<Council> {
+public class JamatkhanaService extends SimpleBaseService<Jamatkhana> {
 
-  protected CouncilService(
-    SimpleBaseRepository<Council> simpleBaseRepository) {
+  protected JamatkhanaService(
+    SimpleBaseRepository<Jamatkhana> simpleBaseRepository) {
     super(simpleBaseRepository);
   }
 }

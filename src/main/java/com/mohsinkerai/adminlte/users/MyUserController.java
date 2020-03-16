@@ -2,6 +2,7 @@ package com.mohsinkerai.adminlte.users;
 
 import com.google.common.collect.ImmutableMap;
 import com.mohsinkerai.adminlte.base.SimpleBaseController;
+import com.mohsinkerai.adminlte.jamatkhana.Jamatkhana;
 import com.mohsinkerai.adminlte.jamatkhana.JamatkhanaService;
 import java.util.List;
 import java.util.Map;
@@ -50,9 +51,9 @@ public class MyUserController extends SimpleBaseController<MyUser> {
 
   @Override
   protected Map<String, Object> getAttributes() {
-    List<com.mohsinkerai.adminlte.jamatkhana.Council> councils = jamatkhanaService.findAll();
+    List<Jamatkhana> jamatkhanas = jamatkhanaService.findAll();
     List<MyAuthority> authorities = myAuthorityService.findAll();
-    return ImmutableMap.of("jks", councils, "authorities", authorities);
+    return ImmutableMap.of("jks", jamatkhanas, "authorities", authorities);
   }
 
   @GetMapping("hello")

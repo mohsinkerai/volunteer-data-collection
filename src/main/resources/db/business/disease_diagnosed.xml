@@ -1,0 +1,45 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+  <changeSet id="disease_diagnosed-01" author="mohsin.kerai">
+    <createTable remarks="Disease Diagnosed for Person"
+      tableName="disease_diagnosed">
+      <column autoIncrement="true" name="id" type="bigint">
+        <constraints nullable="false" primaryKey="true" unique="true"/>
+      </column>
+      <column name="version" type="bigint" defaultValue="1"></column>
+
+      <column name="person_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="disease_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+
+      <!--AUDIT COLUMN-->
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_on" type="datetime">
+        <constraints nullable="false" unique="false"/>
+      </column>
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="updated_on" type="datetime">
+        <constraints nullable="false" unique="false"/>
+      </column>
+      <column defaultValueComputed="null" name="created_by" type="varchar(255)">
+        <constraints nullable="true" unique="false"/>
+      </column>
+      <column defaultValueComputed="null" name="updated_by" type="varchar(255)">
+        <constraints nullable="true" unique="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet id="disease_diagnosed-02" author="mohsin.kerai">
+    <addForeignKeyConstraint baseTableName="disease_diagnosed" baseColumnNames="person_id"
+      constraintName="disease_diagnosed_person_id_fk"
+      referencedTableName="person" referencedColumnNames="id"/>
+  </changeSet>
+  <changeSet id="disease_diagnosed-03" author="mohsin.kerai">
+    <addForeignKeyConstraint baseTableName="disease_diagnosed" baseColumnNames="disease_id"
+                             constraintName="disease_diagnosed_disease_id_fk"
+                             referencedTableName="disease" referencedColumnNames="id"/>
+  </changeSet>
+</databaseChangeLog>

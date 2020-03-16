@@ -1,4 +1,4 @@
-package com.mohsinkerai.adminlte.council;
+package com.mohsinkerai.adminlte.jamatkhana;
 
 import com.mohsinkerai.adminlte.base.BaseEntity;
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Council extends BaseEntity {
+public class Jamatkhana extends BaseEntity {
 
   private String name;
 }
