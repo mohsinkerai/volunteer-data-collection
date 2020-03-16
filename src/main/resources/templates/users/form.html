@@ -1,0 +1,85 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+  <title>Registration Client</title>
+</head>
+<body>
+<section layout:fragment="header">
+  <h1>Customer Registration</h1>
+  <ol class="breadcrumb">
+    <li><a th:href="@{/}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li class="active">Registration Client</li>
+  </ol>
+</section>
+<div layout:fragment="content">
+  <div class="box">
+    <div class="box-header with-border">
+      <h3 class="box-title">User Edit</h3>
+    </div>
+    <form data-toggle="validator" role="form" th:object="${data}"
+          th:action="@{/__${urlPath}__/save}" method="post">
+      <div class="box-body">
+        <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:field="*{version}"/>
+        <input type="hidden" th:field="*{createdBy}"/>
+        <input type="hidden" th:field="*{createdOn}"/>
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" required="true" class="form-control" th:field="*{username}"
+                 id="username"/>
+          <p class="text-danger" th:if="${#fields.hasErrors('username')}"
+             th:errors="*{username}"></p>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" th:field="*{password}"
+                 id="password"/>
+          <p class="text-danger" th:if="${#fields.hasErrors('password')}"
+             th:errors="*{password}"></p>
+        </div>
+
+        <div class="form-group">
+          <label for="enabled">Enabled</label>
+          <select th:field="*{enabled}" id="enabled" class="form-control">
+            <option th:value="true">True</option>
+            <option th:value="false">False</option>
+          </select>
+          <p class="text-danger" th:if="${#fields.hasErrors('enabled')}"
+             th:errors="*{enabled}"></p>
+        </div>
+
+        <div class="form-group">
+          <label>Jamatkhanas</label>
+          <div class="checkbox" th:each="jk : ${jks}">
+            <label th:for="${jk.name}">
+              <input th:id="${jk.name}" type="checkbox" th:checked="${#sets.contains(data.jamatkhanas,jk)}" name="jamatkhanas" th:value="${jk.id}">
+              <span th:text="${jk.name}"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Authorities</label>
+          <div class="checkbox" th:each="auth : ${authorities}">
+            <label th:for="${auth.name}">
+              <input th:id="${auth.name}" type="checkbox" th:checked="${#sets.contains(data.myAuthorities,auth)}" name="myAuthorities" th:value="${auth.id}">
+              <span th:text="${auth.name}"></span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+      <div class="box-footer">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script layout:fragment="custom-script" th:inline="javascript">
+  // https://stackoverflow.com/questions/48538692/thymeleaf-checkboxes-with-objects-list-from-database
+</script>
+</body>
+</html>

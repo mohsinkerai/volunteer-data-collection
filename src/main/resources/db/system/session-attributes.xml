@@ -1,0 +1,28 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+  <changeSet id="sessions_attribute-01" author="mohsin.kerai">
+    <createTable remarks="Table to Store User sessions Information for System Security"
+      tableName="SPRING_SESSION_ATTRIBUTES">
+      <column name="SESSION_PRIMARY_ID" type="CHAR(36)">
+        <constraints nullable="false" primaryKey="false" unique="false"/>
+      </column>
+      <column name="ATTRIBUTE_NAME" type="VARCHAR(200)">
+        <constraints nullable="false" unique="false"/>
+      </column>
+      <column name="ATTRIBUTE_BYTES" type="blob">
+        <constraints nullable="false" unique="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet id="sessions_attribute-02" author="mohsin.kerai">
+    <createIndex tableName="SPRING_SESSION_ATTRIBUTES" indexName="session_attributes_pid_attribute_name_index">
+      <column name="SESSION_PRIMARY_ID" />
+      <column name="ATTRIBUTE_NAME" />
+    </createIndex>
+  </changeSet>
+  <changeSet id="sessions_attribute-03" author="mohsin.kerai">
+    <addForeignKeyConstraint baseTableName="SPRING_SESSION_ATTRIBUTES" baseColumnNames="SESSION_PRIMARY_ID" referencedTableName="SPRING_SESSION" referencedColumnNames="PRIMARY_ID" constraintName="spring_session_attributes_session_primary_fk" onDelete="CASCADE"/>
+  </changeSet>
+</databaseChangeLog>

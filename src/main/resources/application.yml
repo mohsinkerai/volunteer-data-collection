@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: hbp-card-portal
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    db: data_collection_hb3
+    host: localhost
+    port: 3306
+    url: jdbc:mysql://${spring.datasource.host}:${spring.datasource.port}/${spring.datasource.db}?createDatabaseIfNotExist=true
+    username: root
+    password:
+    tomcat:
+      initial-size: 6
+      max-wait: 20000
+      max-active: 100
+      max-idle: 10
+      min-idle: 4
+      validation-query-timeout: 2
+      initialize: false
+  jpa:
+    hibernate.ddl-auto: validate
+    generate-ddl: true
+    database: MYSQL
+    show: true
+  thymeleaf:
+    cache: false
+    check-template-location: true
+    prefix: file:./src/main/resources/templates/
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: embedded
+  liquibase:
+    change-log: classpath:db/liquibase-changelog.xml
+server:
+  servlet:
+    session:
+      cookie:
+        http-only: true
+#        secure: true
+      timeout: 120m
+  tomcat:
+    accesslog:
+      max-logs: 10
+      enabled: true
+      directory: ./
+    basedir: logs
+logging:
+  file: logs/app.log
+  file.name: application-spring.log
+  file.path: /var/log
+  file.max-history: 10
+  file.max-size: 1MB

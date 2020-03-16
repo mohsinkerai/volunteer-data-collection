@@ -1,0 +1,65 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+  <changeSet id="person-01" author="mohsin.kerai">
+    <createTable remarks="Table to Store Person Basic Information"
+      tableName="person">
+      <column autoIncrement="true" name="id" type="bigint">
+        <constraints nullable="false" primaryKey="true" unique="true"/>
+      </column>
+      <column name="version" type="bigint" defaultValue="1"></column>
+
+      <column name="name" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="cnic" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="gender" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="date_of_birth" type="date">
+        <constraints nullable="true"/>
+      </column>
+      <column name="residential_address" type="varchar(2000)">
+        <constraints nullable="true"/>
+      </column>
+      <column name="contact_number" type="varchar(255)">
+        <constraints nullable="true"/>
+      </column>
+      <column name="house_hold_members_count" type="int" />
+      <column name="created_date" type="date"></column>
+      <column name="uuid" type="varchar(255)"></column>
+      <column name="visited_doctor_for_checkup" type="int" remarks="In the last 12 months have you visited doctor / hospital for medical checkup?"></column>
+      <column name="insurance_coverage" type="int" remarks="Do you have health insurance coverage?"></column>
+      <column name="self_insurance_coverage" type="int" remarks="Do you have health insurance coverage?"></column>
+      <column name="employer_insurance_coverage" type="int" remarks="Do you have health insurance coverage?"></column>
+      <column name="other_medical_facility_accessed" type="varchar(300)" remarks="Do you have health insurance coverage?"></column>
+      <column name="other_disability" type="varchar(300)" remarks="Do you have health insurance coverage?"></column>
+      <column name="smoke" type="int" remarks="Do you smoke?"></column>
+
+      <!--AUDIT COLUMN-->
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_on" type="datetime">
+        <constraints nullable="false" unique="false"/>
+      </column>
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="updated_on" type="datetime">
+        <constraints nullable="false" unique="false"/>
+      </column>
+      <column defaultValueComputed="null" name="created_by" type="varchar(255)">
+        <constraints nullable="true" unique="false"/>
+      </column>
+      <column defaultValueComputed="null" name="updated_by" type="varchar(255)">
+        <constraints nullable="true" unique="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet id="person-02" author="mohsin.kerai">
+    <addColumn tableName="person">
+      <column name="jamatkhana_id" type="bigint" beforeColumn="created_on"></column>
+    </addColumn>
+    <addForeignKeyConstraint baseTableName="person" baseColumnNames="jamatkhana_id"
+      constraintName="customer_jamatkhana_id_fk"
+      referencedTableName="jamatkhana" referencedColumnNames="id"/>
+  </changeSet>
+</databaseChangeLog>

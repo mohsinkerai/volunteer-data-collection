@@ -1,0 +1,76 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+  <changeSet id="my-users-01" author="mohsin.kerai">
+    <createTable remarks="Table to Store Users Information for System Security"
+      tableName="my_user">
+      <column autoIncrement="true" name="id" type="bigint">
+        <constraints nullable="false" primaryKey="true" unique="true"/>
+      </column>
+      <column name="version" type="bigint" defaultValue="1"></column>
+      <column name="username" type="varchar(255)">
+        <constraints nullable="false" unique="true"/>
+      </column>
+      <column name="password" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="enabled" type="BOOLEAN" defaultValueBoolean="true">
+        <constraints nullable="false"/>
+      </column>
+      <column name="locked" type="BOOLEAN" defaultValueBoolean="false">
+        <constraints nullable="false"/>
+      </column>
+      <column name="credentials_expired" type="BOOLEAN" defaultValueBoolean="false">
+        <constraints nullable="false"/>
+      </column>
+      <column name="account_expired" type="BOOLEAN" defaultValueBoolean="false">
+        <constraints nullable="false"/>
+      </column>
+
+      <!--AUDIT COLUMN-->
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_on" type="datetime">
+        <constraints nullable="false" unique="false"/>
+      </column>
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="updated_on" type="datetime">
+        <constraints nullable="false" unique="false"/>
+      </column>
+      <column defaultValueComputed="null" name="created_by" type="varchar(255)">
+        <constraints nullable="true" unique="false"/>
+      </column>
+      <column defaultValueComputed="null" name="updated_by" type="varchar(255)">
+        <constraints nullable="true" unique="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet id="my-users-02" author="mohsin.kerai">
+    <createIndex tableName="my_user" indexName="users_username_index">
+      <column name="username" />
+    </createIndex>
+  </changeSet>
+  <changeSet id="my-users-03" author="mohsin.kerai">
+    <insert tableName="my_user">
+      <column name="id" value="1" />
+      <column name="username" value="admin"/>
+      <column name="password" value="$2a$10$yBKOgfPBnGEMKJW4jrANJurplYRnjCQjyoT8S4fbNkNu6GO254Y3a"/>
+      <column name="enabled" valueBoolean="true"/>
+    </insert>
+  </changeSet>
+  <changeSet id="my-users-04" author="mohsin.kerai">
+    <insert tableName="my_user">
+      <column name="id" value="2" />
+      <column name="username" value="user"/>
+      <column name="password" value="$2a$10$v9xaftczYUk0bfhdCGxhW.0cDFHG2n5yAMbnUNrvMtkMQwL4CNMHq"/>
+      <column name="enabled" valueBoolean="true"/>
+    </insert>
+  </changeSet>
+  <changeSet id="my-users-05" author="mohsin.kerai">
+    <addColumn tableName="my_user">
+      <column name="jamatkhana_id" type="bigint"></column>
+    </addColumn>
+  </changeSet>
+  <changeSet id="my-users-06" author="mohsin.kerai">
+    <addForeignKeyConstraint baseTableName="my_user" baseColumnNames="jamatkhana_id" constraintName="my_user_jamatkhana_id_fk"
+      referencedTableName="jamatkhana" referencedColumnNames="id" />
+  </changeSet>
+</databaseChangeLog>

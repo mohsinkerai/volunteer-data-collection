@@ -1,0 +1,56 @@
+<!-- sidebar: style can be found in sidebar.less -->
+<section class="sidebar">
+  <!-- sidebar menu: : style can be found in sidebar.less -->
+  <ul class="sidebar-menu">
+    <li class="treeview" th:classappend="${#httpServletRequest.requestURI.startsWith('/dashboard')? 'active':''}">
+      <a th:href="@{/}">
+        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+      </a>
+    </li>
+    <li class="treeview" th:classappend="${#httpServletRequest.requestURI.startsWith('/customers')? 'active':''}">
+      <a href="#">
+        <i class="fa fa-folder"></i>
+        <span>Registration</span>
+        <i class="fa fa-angle-left pull-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li sec:authorize="hasAuthority('ADMIN')" th:classappend="${#httpServletRequest.requestURI.startsWith('/person')? 'active':''}"><a th:href="@{/person}"><i class="fa fa-circle-o"></i> Person</a></li>
+        <li sec:authorize="!hasAuthority('ADMIN')" th:classappend="${#httpServletRequest.requestURI.startsWith('/person')? 'active':''}"><a th:href="@{/person/jk}"><i class="fa fa-circle-o"></i> Person JK</a></li>
+        <li><a th:href="@{/jamatkhana}" sec:authorize="hasAuthority('ADMIN')"><i class="fa fa-circle-o"></i>Jamatkhana</a></li>
+        <li th:classappend="${#httpServletRequest.requestURI.startsWith('/person/add')? 'active':''}"><a th:href="@{/person/add}"><i class="fa fa-circle-o"></i>Add Person</a></li>
+      </ul>
+    </li>
+    <li class="treeview" th:classappend="${#httpServletRequest.requestURI.startsWith('/lookup')? 'active':''}" sec:authorize="hasAuthority('ADMIN')" >
+      <a href="#">
+        <i class="fa fa-folder"></i>
+        <span>Lookup</span>
+        <i class="fa fa-angle-left pull-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li th:classappend="${#httpServletRequest.requestURI.startsWith('/lookup/disease')? 'active':''}"><a th:href="@{/lookup/disease}"><i class="fa fa-circle-o"></i> Disease</a></li>
+        <li th:classappend="${#httpServletRequest.requestURI.startsWith('/lookup/health-facility')? 'active':''}"><a th:href="@{/lookup/disease}"><i class="fa fa-circle-o"></i> Health Facility</a></li>
+      </ul>
+    </li>
+    <li class="treeview" th:classappend="${#httpServletRequest.requestURI.startsWith('/customers')? 'active':''}"  sec:authorize="hasAuthority('LEAD')">
+      <a href="#">
+        <i class="fa fa-folder"></i>
+        <span>Reports</span>
+        <i class="fa fa-angle-left pull-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li><a th:href="@{/report/forms/by-jamatkhana}"><i class="fa fa-circle-o"></i>By Jamatkhana Summary</a></li>
+        <li><a th:href="@{/report/forms/by-jamatkhana-list}"><i class="fa fa-circle-o"></i>By Jamatkhana and Date</a></li>
+        <li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/admin/report/forms/summary}"><i class="fa fa-circle-o"></i>Summary By Date</a></li>
+        <li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/admin/report/forms/for-card}"><i class="fa fa-circle-o"></i>Card Printing Report</a></li>
+      </ul>
+    </li>
+    <li class="treeview"
+        th:classappend="${#httpServletRequest.requestURI.startsWith('/users')? 'active':''}"
+        sec:authorize="hasAuthority('ADMIN')">
+      <a th:href="@{/users}">
+        <i class="fa fa-user" ></i> <span>Users Management</span>
+      </a>
+    </li>
+  </ul>
+</section>
+<!-- /.sidebar -->

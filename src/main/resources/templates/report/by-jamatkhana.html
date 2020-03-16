@@ -1,0 +1,57 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+  <title>Jamatkhana</title>
+</head>
+<body>
+<section layout:fragment="header">
+  <h1>Jamatkhana Summary</h1>
+  <ol class="breadcrumb">
+    <li><a th:href="@{/}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li class="active">Jamatkhana Add</li>
+  </ol>
+</section>
+<div layout:fragment="content">
+  <div class="box">
+    <div class="box-header with-border">
+      <h3 class="box-title">Reports</h3>
+      <div class="box-tools pull-right">
+        <a th:href="@{/{urlPath}(urlPath=${urlPath})}" type="button" class="btn btn-box-tool"><i
+          class="fa fa-list-ul"></i></a>
+      </div>
+    </div>
+    <form data-toggle="validator" role="form" th:object="${data}"
+          th:action="@{/__${urlPath}__/download}" target="_blank" method="get">
+      <div class="box-body">
+        <div class="form-group">
+          <label for="fromDate">From Date</label>
+          <input type="date" required="true" class="form-control" th:field="*{fromDate}" id="fromDate"/>
+          <p class="text-danger" th:if="${#fields.hasErrors('fromDate')}"
+             th:errors="*{fromDate}"></p>
+        </div>
+        <div class="form-group">
+          <label for="toDate">Date</label>
+          <input type="date" required="true" class="form-control" th:field="*{toDate}" id="toDate"/>
+          <p class="text-danger" th:if="${#fields.hasErrors('toDate')}"
+             th:errors="*{toDate}"></p>
+        </div>
+
+        <div class="form-group">
+          <label for="jk">Jamatkhana Name</label>
+          <select th:field="*{jamatkhana}" id="jk" class="form-control">
+            <option th:each="jk : ${jks}"
+                    th:value="${jk.id}"
+                    th:text="${jk.name}">
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="box-footer">
+        <button type="submit" class="btn btn-primary">Download PDF File</button>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+  <changeSet id="health_facility-01" author="mohsin.kerai">
+    <createTable remarks="Table to Store health_facility Name for FK"
+      tableName="health_facility">
+      <column autoIncrement="true" name="id" type="bigint">
+        <constraints nullable="false" primaryKey="true" unique="true"/>
+      </column>
+      <column name="version" type="bigint" defaultValue="1"></column>
+      <column name="name" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+
+      <!--AUDIT COLUMN-->
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_on" type="datetime">
+        <constraints nullable="false" unique="false"/>
+      </column>
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="updated_on" type="datetime">
+        <constraints nullable="false" unique="false"/>
+      </column>
+      <column defaultValueComputed="null" name="created_by" type="varchar(255)">
+        <constraints nullable="true" unique="false"/>
+      </column>
+      <column defaultValueComputed="null" name="updated_by" type="varchar(255)">
+        <constraints nullable="true" unique="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet id="health_facility-02" author="mohsin.kerai">
+    <insert tableName="health_facility">
+      <column name="name" value="AKUH"></column>
+    </insert>
+    <insert tableName="health_facility">
+      <column name="name" value="AKHSP"></column>
+    </insert>
+    <insert tableName="health_facility">
+      <column name="name" value="Government"></column>
+    </insert>
+    <insert tableName="health_facility">
+      <column name="name" value="Private"></column>
+    </insert>
+    <insert tableName="health_facility">
+      <column name="name" value="Others"></column>
+    </insert>
+  </changeSet>
+</databaseChangeLog>

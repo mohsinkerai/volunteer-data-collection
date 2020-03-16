@@ -1,0 +1,83 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+  <changeSet id="disease-01" author="mohsin.kerai">
+    <createTable remarks="Table to Store disease Name for FK"
+      tableName="disease">
+      <column autoIncrement="true" name="id" type="bigint">
+        <constraints nullable="false" primaryKey="true" unique="true"/>
+      </column>
+      <column name="version" type="bigint" defaultValue="1"></column>
+      <column name="name" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+
+      <!--AUDIT COLUMN-->
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_on" type="datetime">
+        <constraints nullable="false" unique="false"/>
+      </column>
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="updated_on" type="datetime">
+        <constraints nullable="false" unique="false"/>
+      </column>
+      <column defaultValueComputed="null" name="created_by" type="varchar(255)">
+        <constraints nullable="true" unique="false"/>
+      </column>
+      <column defaultValueComputed="null" name="updated_by" type="varchar(255)">
+        <constraints nullable="true" unique="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet id="disease-02" author="mohsin.kerai">
+    <insert tableName="disease">
+      <column name="name" value="High blood pressure" />
+    </insert>
+    <insert tableName="disease">
+      <column name="name" value="Diabetes" />
+    </insert>
+    <insert tableName="disease">
+      <column name="name" value="High cholesterol" />
+    </insert>
+    <insert tableName="disease">
+      <column name="name" value="Heart Disease" />
+    </insert>
+    <insert tableName="disease">
+      <column name="name" value="Asthma" />
+    </insert>
+  </changeSet>
+  <changeSet id="disease-03" author="mohsin.kerai">
+    <insert tableName="disease">
+      <column name="name" value="Lung Cancer"></column>
+    </insert>
+    <insert tableName="disease">
+      <column name="name" value="Breast Cancer"></column>
+    </insert>
+    <insert tableName="disease">
+      <column name="name" value="Mouth Cancer"></column>
+    </insert>
+    <insert tableName="disease">
+      <column name="name" value="Renal/Urinary Disease"></column>
+    </insert>
+    <insert tableName="disease">
+      <column name="name" value="Hepatitis"></column>
+    </insert>
+    <insert tableName="disease">
+      <column name="name" value="Tuberculosis"></column>
+    </insert>
+    <insert tableName="disease">
+      <column name="name" value="Mental / Psychiatric"></column>
+    </insert>
+    <insert tableName="disease">
+      <column name="name" value="Alzheimer"></column>
+    </insert>
+    <insert tableName="disease">
+      <column name="name" value="Parkinson"></column>
+    </insert>
+    <insert tableName="disease">
+      <column name="name" value="Stroke"></column>
+    </insert>
+    <insert tableName="disease">
+      <column name="name" value="Other"></column>
+    </insert>
+  </changeSet>
+</databaseChangeLog>
