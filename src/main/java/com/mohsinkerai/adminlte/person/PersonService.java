@@ -72,6 +72,10 @@ public class PersonService extends SimpleBaseService<Person> {
     return personRepository.findByJamatkhanaAndCreatedDateBetween(jamatkhana, fromCreatedDate, toCreatedDate);
   }
 
+  public List<Person> findByCreatedDateBetween(LocalDate fromCreatedDate, LocalDate toCreatedDate) {
+    return personRepository.findByCreatedDateBetween(fromCreatedDate, toCreatedDate);
+  }
+
   private boolean hasRole(MyUser currentUser, String role) {
     return currentUser.getAuthorities()
       .stream()

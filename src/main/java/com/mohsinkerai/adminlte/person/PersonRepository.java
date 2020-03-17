@@ -13,6 +13,8 @@ import java.util.List;
 @Repository
 public interface PersonRepository extends SimpleBaseRepository<Person> {
 
+  List<Person> findByCreatedDateBetween(LocalDate fromCreatedDate, LocalDate toCreatedDate);
+
   List<Person> findByCreatedByAndCreatedDateBetween(String createdBy, LocalDate fromCreatedDate, LocalDate toCreatedDate);
 
   List<Person> findByJamatkhanaIn(Collection<Jamatkhana> jamatkhanas);

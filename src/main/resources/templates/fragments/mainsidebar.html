@@ -16,7 +16,7 @@
       <ul class="treeview-menu">
         <li sec:authorize="hasAuthority('ADMIN')" th:classappend="${#httpServletRequest.requestURI.startsWith('/person')? 'active':''}"><a th:href="@{/person}"><i class="fa fa-circle-o"></i> Person</a></li>
         <li sec:authorize="!hasAuthority('ADMIN')" th:classappend="${#httpServletRequest.requestURI.startsWith('/person')? 'active':''}"><a th:href="@{/person/jk}"><i class="fa fa-circle-o"></i> Person JK</a></li>
-        <li><a th:href="@{/jamatkhana}" sec:authorize="hasAuthority('ADMIN')"><i class="fa fa-circle-o"></i>Jamatkhana</a></li>
+        <li><a th:href="@{/jamatkhana}" sec:authorize="hasAuthority('ADMIN')"><i class="fa fa-circle-o"></i>Council</a></li>
         <li th:classappend="${#httpServletRequest.requestURI.startsWith('/person/add')? 'active':''}"><a th:href="@{/person/add}"><i class="fa fa-circle-o"></i>Add Person</a></li>
       </ul>
     </li>
@@ -27,10 +27,7 @@
         <i class="fa fa-angle-left pull-right"></i>
       </a>
       <ul class="treeview-menu">
-        <li><a th:href="@{/report/forms/by-jamatkhana}"><i class="fa fa-circle-o"></i>By Jamatkhana Summary</a></li>
-        <li><a th:href="@{/report/forms/by-jamatkhana-list}"><i class="fa fa-circle-o"></i>By Jamatkhana and Date</a></li>
-        <li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/admin/report/forms/summary}"><i class="fa fa-circle-o"></i>Summary By Date</a></li>
-        <li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/admin/report/forms/for-card}"><i class="fa fa-circle-o"></i>Card Printing Report</a></li>
+        <li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/admin/report/forms/dump}"><i class="fa fa-circle-o"></i>Excel Dump Download</a></li>
       </ul>
     </li>
     <li class="treeview"

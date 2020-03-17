@@ -33,11 +33,11 @@ import java.util.stream.Collectors;
 
 import static com.mohsinkerai.adminlte.report.ReportController.REPORT_CONTROLLER_NAME;
 
-@RequestMapping(REPORT_CONTROLLER_NAME)
-@Controller
+//@RequestMapping(REPORT_CONTROLLER_NAME)
+//@Controller
 @AllArgsConstructor
 @Slf4j
-@PreAuthorize("hasAuthority('LEAD')")
+//@PreAuthorize("hasAuthority('LEAD')")
 public class ReportController {
 
   public static final String REPORT_CONTROLLER_NAME = "report";

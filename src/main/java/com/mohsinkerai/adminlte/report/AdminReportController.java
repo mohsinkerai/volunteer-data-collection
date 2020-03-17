@@ -35,11 +35,11 @@ import java.util.stream.Collectors;
 
 import static com.mohsinkerai.adminlte.report.AdminReportController.REPORT_CONTROLLER_NAME;
 
-@RequestMapping(REPORT_CONTROLLER_NAME)
-@Controller
+//@RequestMapping(REPORT_CONTROLLER_NAME)
+//@Controller
 @AllArgsConstructor
 @Slf4j
-@PreAuthorize("hasAuthority('ADMIN')")
+//@PreAuthorize("hasAuthority('ADMIN')")
 public class AdminReportController {
 
   public static final String REPORT_CONTROLLER_NAME = "admin/report";
@@ -51,7 +51,7 @@ public class AdminReportController {
   private final JamatkhanaRegistrationReportGenerator jamatkhanaRegistrationReportGenerator;
   private final ReportValidator reportValidator;
 
-  @GetMapping("forms/summary")
+//  @GetMapping("forms/summary")
   public String findFormsFilledByJamatkhana(Model model) {
     JamatkhanaAndDateDto dto = new JamatkhanaAndDateDto(null, LocalDate.now(), LocalDate.now());
 
@@ -63,7 +63,7 @@ public class AdminReportController {
     return "report/" + "by-jamatkhana";
   }
 
-  @GetMapping("forms/summary/download")
+//  @GetMapping("forms/summary/download")
   public HttpEntity<byte[]> getFormsFilledByUsername(JamatkhanaAndDateDto jamatkhanaAndDateDto, Model model) throws JRException {
     LocalDate fromDate = jamatkhanaAndDateDto.getFromDate();
     LocalDate toDate = jamatkhanaAndDateDto.getToDate();
@@ -86,7 +86,7 @@ public class AdminReportController {
     return new HttpEntity<byte[]>(bytes, headers);
   }
 
-  @GetMapping("forms/for-card")
+//  @GetMapping("forms/for-card")
   public String findFormsFilledByUsername(Model model) {
     JamatkhanaAndDateDto dto = new JamatkhanaAndDateDto(null, LocalDate.now(), LocalDate.now());
 
@@ -99,7 +99,7 @@ public class AdminReportController {
     return "report/" + "by-jamatkhana";
   }
 
-  @GetMapping("forms/for-card/download")
+//  @GetMapping("forms/for-card/download")
   public HttpEntity<byte[]> getFormsFilledByUsername(JamatkhanaAndDateDto jamatkhanaAndDateDto)
     throws JRException {
     LocalDate fromDate = jamatkhanaAndDateDto.getFromDate();
