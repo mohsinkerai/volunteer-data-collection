@@ -17,11 +17,11 @@ import java.time.LocalDate;
 public class Person extends BaseEntity {
 
   private String name;
-  private String cnic;
   private String gender;
 
-  @DateTimeFormat(pattern = "dd/MM/yyyy")
-  private LocalDate dateOfBirth;
+//  @DateTimeFormat(pattern = "dd/MM/yyyy")
+//  private LocalDate dateOfBirth;
+  private int age;
   private String contactNumber;
   private String residentialAddress;
 

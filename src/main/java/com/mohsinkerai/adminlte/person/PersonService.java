@@ -72,13 +72,6 @@ public class PersonService extends SimpleBaseService<Person> {
     return personRepository.findByJamatkhanaAndCreatedDateBetween(jamatkhana, fromCreatedDate, toCreatedDate);
   }
 
-  public List<PersonShortDto> findByCnic(String cnic) {
-    return personRepository.findByCnic(cnic)
-      .stream()
-      .map(p -> new PersonShortDto(p.getId(), p.getJamatkhana(), p.getName(), p.getCnic()))
-      .collect(Collectors.toList());
-  }
-
   private boolean hasRole(MyUser currentUser, String role) {
     return currentUser.getAuthorities()
       .stream()

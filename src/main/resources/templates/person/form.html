@@ -31,16 +31,25 @@
         <input type="hidden" th:field="*{createdDate}"/>
 
         <div class="form-group">
-          <label for="cnic">CNIC</label>
-          <input type="text" required="true" class="form-control" th:field="*{cnic}" pattern="(^\d{5}-\d{7}-\d{1}$)|(^o[a-zA-Z0-9-]{0,17}$)" placeholder="12345-1234567-1"
-                 id="cnic" title="This is an error message" data-error="CNIC should be of format 12345-1234567-1"/>
-          <p class="text-danger" th:if="${#fields.hasErrors('cnic')}"
-             th:errors="*{cnic}"></p>
-          <p class="text-danger" th:if="${cnicError} != null"
-             th:text="${cnicError}"></p>
-          <div class="help-block with-errors"></div>
-          <p class="text-danger" id="cnicErrorText" hidden="true"></p>
+          <label for="jk">Local Council</label>
+          <select th:field="*{jamatkhana}" id="jk" class="form-control">
+            <option th:each="jamatkhana : ${jks}"
+                    th:value="${jamatkhana.id}"
+                    th:text="${jamatkhana.name}">
+            </option>
+          </select>
+          <p class="text-danger" th:if="${#fields.hasErrors('jamatkhana')}"
+             th:errors="*{jamatkhana}"></p>
         </div>
+        <div class="form-group">
+          <label for="jamatkhanaName">Jamatkhana Name</label>
+          <input type="text" required="true" class="form-control" th:field="*{jamatkhanaName}" maxlength="30" minlength="3"
+                 placeholder="Enter Jamatkhana Name" id="jamatkhanaName" data-error="Jamatkhana Name should be between 4 and 30 characters."/>
+          <p class="text-danger" th:if="${#fields.hasErrors('jamatkhanaName')}"
+             th:errors="*{jamatkhanaName}"></p>
+          <div class="help-block with-errors"></div>
+        </div>
+
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" required="true" class="form-control" th:field="*{name}" maxlength="30" minlength="3"
@@ -59,11 +68,10 @@
              th:errors="*{gender}"></p>
         </div>
         <div class="form-group">
-          <label for="dateOfBirth">Date Of Birth</label>
-          <input type="text" required="true" class="form-control" th:field="*{dateOfBirth}"
-                 id="dateOfBirth" placeholder="dd/mm/yyyy"/>
-          <p class="text-danger" th:if="${#fields.hasErrors('dateOfBirth')}"
-             th:errors="*{dateOfBirth}"></p>
+          <label for="age">Age</label>
+          <input type="number" placeholder="Age" required="true" class="form-control" th:field="*{age}" id="age" max="120" min="0" data-error="Age should be between 0-120"/>
+          <p class="text-danger" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></p>
+          <div class="help-block with-errors"></div>
         </div>
         <div class="form-group">
           <label for="residentialAddress">Residential Address</label>
@@ -76,17 +84,6 @@
           <input type="text" placeholder="Contact Number" required="true" class="form-control" th:field="*{contactNumber}" id="contactNumber" pattern="^\d{4}-\d{7}|\d{3}-\d{8}$" data-error="Contact Number should be of format 1234-1234567 or 123-12345678"/>
           <p class="text-danger" th:if="${#fields.hasErrors('contactNumber')}" th:errors="*{contactNumber}"></p>
           <div class="help-block with-errors"></div>
-        </div>
-        <div class="form-group">
-          <label for="jk">Jamatkhana</label>
-          <select th:field="*{jamatkhana}" id="jk" class="form-control">
-            <option th:each="jamatkhana : ${jks}"
-                    th:value="${jamatkhana.id}"
-                    th:text="${jamatkhana.name}">
-            </option>
-          </select>
-          <p class="text-danger" th:if="${#fields.hasErrors('jamatkhana')}"
-             th:errors="*{jamatkhana}"></p>
         </div>
 
         <div class="form-group">
@@ -187,84 +184,15 @@
   });
 
   $(document).ready(function() {
-
-    var cnicMaskOptions = {
-      placeholder: "_____-_______-_",
-      onKeyPress: function(cep, e, field, options) {
-        var masks = ['Z00000-0000000-0', 'oAAAAAAAAAAAAAA'];
-        var toApplyMask = cep.startsWith("o") ? masks[1] : masks[0];
-        $("#cnic").mask(toApplyMask, cnicMaskOptions);
-      },
-      translation: {
-        'Z': {
-          pattern: /[o]/, optional: true
-        }
-      }
-    };
-
-    $('#cnic').mask('Z00000-0000000-0', cnicMaskOptions);
     $('#contactNumber').mask('000Z-0000000Z', {placeholder: "____-_______", translation: {
         'Z': {
           pattern: /[0-9]/, optional: true
         }
     }});
-    $("#dateOfBirth").mask('00/00/0000');
-
-    var date = new Date();
-
-    $("#dateOfBirth").datepicker({
-      format: "dd/mm/yyyy",
-      startView: 3,
-      todayHighlight: true,
-      endDate: "0d",
-      startDate: '-120y'
-    });
 
     $('#myform').on('submit', function(e) {
       $('#submit').attr('disabled', true);
     });
-
-    $("#cnic").on('blur', function() {
-      var e = $(this);
-      var cnicNumber = e.val();
-      var pattern = e.attr('pattern');
-      var regex = new RegExp(pattern);
-      var isCnicValid = regex.test(cnicNumber);
-      if (isCnicValid) {
-        $.ajax({
-          url: "cnic",
-          type: "get", //send it through get method
-          data: {
-            cnic: cnicNumber
-          },
-          success: function(response) {
-            var size = response.length;
-            var sameId = 0;
-            var documentId = $("#id").val();
-            var person;
-            response.forEach(function(item) {
-              if(item.id.toString() === documentId) {
-                sameId++;
-              } else {
-                person = item;
-              }
-            });
-
-            var submitButton = $("#submit");
-            var cnicErrorText = $("#cnicErrorText")
-            if(size-sameId > 0) {
-              submitButton.attr('disabled', true);
-              cnicErrorText.attr('hidden', false);
-              cnicErrorText.text("Person Exist with Form # " + person.id + " Name: " + person.personName + " Jamatkhana: " + person.jamatkhana.name);
-            } else {
-              submitButton.attr('disabled', false);
-              cnicErrorText.attr('hidden', true);
-            }
-          }
-        })
-      }
-    });
-
   });
   // https://stackoverflow.com/questions/48538692/thymeleaf-checkboxes-with-objects-list-from-database
 </script>

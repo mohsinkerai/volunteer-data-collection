@@ -13,13 +13,10 @@
       <column name="name" type="varchar(255)">
         <constraints nullable="false"/>
       </column>
-      <column name="cnic" type="varchar(255)">
-        <constraints nullable="false"/>
-      </column>
       <column name="gender" type="varchar(255)">
         <constraints nullable="false"/>
       </column>
-      <column name="date_of_birth" type="date">
+      <column name="age" type="int">
         <constraints nullable="true"/>
       </column>
       <column name="residential_address" type="varchar(2000)">

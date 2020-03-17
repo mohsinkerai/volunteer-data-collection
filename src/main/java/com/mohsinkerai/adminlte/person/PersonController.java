@@ -63,11 +63,6 @@ public class PersonController extends SimpleBaseController<Person> {
     return ImmutableMap.of("jks", currentUser.getJamatkhanas());
   }
 
-  @RequestMapping(value = {"add/cnic", "cnic", "edit/cnic"})
-  public ResponseEntity<List<PersonShortDto>> findPersonWithThisCnic(@RequestParam String cnic) {
-    return ResponseEntity.ok(personService.findByCnic(cnic));
-  }
-
   @Override
   @PreAuthorize("hasAuthority('ADMIN')")
   public String delete(@PathVariable Long id) {
@@ -112,12 +107,8 @@ public class PersonController extends SimpleBaseController<Person> {
   @Override
   public String save(Person person, BindingResult bindingResult, Model model,
                      RedirectAttributes ra) {
-    PersonShortDto personExist = cnicExists(person);
-    if (personExist != null || bindingResult.hasErrors()) {
+    if (bindingResult.hasErrors()) {
       model.addAttribute("data", person);
-      if (personExist != null) {
-        model.addAttribute("cnicError", "CNIC Already Exist with JK Name " + personExist.getJamatkhana().getName() + " and Person Name " + personExist.getPersonName() + " and form No " + personExist.getId());
-      }
       model.addAttribute("org.springframework.validation.BindingResult.data", bindingResult);
       model.addAttribute("urlPath", urlPath());
       model.addAllAttributes(getAttributes());
@@ -128,10 +119,5 @@ public class PersonController extends SimpleBaseController<Person> {
       .format("Successfully Saved Jamati Memeber with Name <b><mark>%s</mark></b> and id <mark><b>%04d</b></mark>", person.getName(),
         person.getId()));
     return "redirect:/" + urlPath() + "/add";
-  }
-
-  private PersonShortDto cnicExists(Person person) {
-    List<PersonShortDto> persons = personService.findByCnic(person.getCnic());
-    return persons.stream().filter(p -> !p.getId().equals(person.getId())).findFirst().orElse(null);
   }
 }

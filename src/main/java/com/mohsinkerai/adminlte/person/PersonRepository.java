@@ -23,7 +23,5 @@ public interface PersonRepository extends SimpleBaseRepository<Person> {
   @Query(value = "SELECT jk.name as 'username', count(*) as 'forms' FROM person p INNER JOIN jamatkhana jk on jk.id = p.jamatkhana_id where p.created_date >=   ?1 and p.created_date <= ?2 group by jk.id, jk.name", nativeQuery = true)
   List<JamatkhanaSummaryDto> findBySummaryPerJamatkhanaBetween(LocalDate fromCreatedDate, LocalDate toCreatedDate);
 
-  List<Person> findByCnic(String cnic);
-
   List<Person> findByJamatkhanaAndCreatedDateBetween(Jamatkhana jamatkhana, LocalDate fromCreatedDate, LocalDate toCreatedDate);
 }
