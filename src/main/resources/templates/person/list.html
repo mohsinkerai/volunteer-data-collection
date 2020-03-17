@@ -27,7 +27,6 @@
         <tr>
           <th>ID</th>
           <th>Name</th>
-          <th>CNIC</th>
           <th>Gender</th>
           <th>Jamatkhana</th>
           <th>Action</th>
@@ -35,7 +34,6 @@
         <tr th:each="row : ${list}">
           <td th:text="${row.id}"></td>
           <td th:text="${row.name}"></td>
-          <td th:text="${row.cnic}"></td>
           <td th:text="${row.gender}"></td>
           <td th:text="${row.jamatkhana.name}"></td>
           <td>

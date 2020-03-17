@@ -30,14 +30,18 @@
       <column name="contact_history" type="varchar(400)" />
       <column name="fever" type="varchar(400)" />
       <column name="cough" type="varchar(400)" />
-      <column name="shortness_of_nreath" type="varchar(400)" />
-      <column name="suspect_stable" type="varchar(400)" />
-      <column name="suspect_unstable" type="varchar(400)" />
-      <column name="isolation_at_home" type="varchar(400)" />
-      <column name="refer_to_hospital" type="varchar(400)" />
       <column name="shortness_of_breath" type="varchar(400)" />
+      <column name="suspect_stable" type="varchar(400)" />
+
+      <column name="recommendation" type="varchar(400)" /> <!-- Discharged, Refer to Hospital & StablenDischarged-->
+      <column name="name_of_hospital" type="varchar(400)" />
+
+      <column name="entered_by_name" type="varchar(400)" />
+      <column name="entered_by_contact" type="varchar(400)" />
+      <column name="remarks" type="varchar(2000)" />
 
       <column name="created_date" type="date"></column>
+      <column name="jamatkhana_name" type="varchar(200)" />
 
       <!--AUDIT COLUMN-->
       <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_on" type="datetime">

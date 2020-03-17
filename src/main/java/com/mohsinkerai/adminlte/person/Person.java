@@ -25,20 +25,25 @@ public class Person extends BaseEntity {
   private String contactNumber;
   private String residentialAddress;
 
+  // Nature of Complaint
   private String travelHistory;
   private String contactHistory;
   private String fever;
   private String cough;
   private String shortnessOfBreath;
   private String suspectStable; // Fever/Cough without shortness of breath
-  private String suspectUnstable; // Fever/Cough with shortness of breath
 
-  private String isolationAtHome;
-  private String referToHospital;
+  private String recommendation;
+  private String nameOfHospital;
+
+  private String enteredByName;
+  private String enteredByContact;
+  private String remarks;
 
   @ManyToOne
   @JoinColumn(name = "jamatkhana_id")
   private Jamatkhana jamatkhana;
+  private String jamatkhanaName;
 
   @DateTimeFormat(pattern = ProjectConstant.DATE_HTML_FORMAT)
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = ProjectConstant.DATE_FORMAT)

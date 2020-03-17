@@ -124,7 +124,7 @@
              th:errors="*{cough}"></p>
         </div>
         <div class="form-group">
-          <label for="shortnessOfBreath">shortnessOfBreath?</label>
+          <label for="shortnessOfBreath">Shortness Of Breath?</label>
           <select th:field="*{shortnessOfBreath}" id="shortnessOfBreath" class="form-control">
             <option value="0">No</option>
             <option value="1">Yes</option>
@@ -141,32 +141,41 @@
           <p class="text-danger" th:if="${#fields.hasErrors('suspectStable')}"
              th:errors="*{suspectStable}"></p>
         </div>
+
         <div class="form-group">
-          <label for="suspectUnstable">Suspect Unstable? (Fever/Cough without shortness of breath)</label>
-          <select th:field="*{suspectUnstable}" id="suspectUnstable" class="form-control">
-            <option value="0">No</option>
-            <option value="1">Yes</option>
+          <label for="recommendation">Recommendations</label>
+          <select th:field="*{recommendation}" id="recommendation" class="form-control">
+            <option value="Stable and discharged">Stable and discharged</option>
+            <option value="Isolation at Home">Isolation at Home</option>
+            <option value="Refer to Hospital">Refer to Hospital</option>
           </select>
-          <p class="text-danger" th:if="${#fields.hasErrors('suspectUnstable')}"
-             th:errors="*{suspectUnstable}"></p>
+          <p class="text-danger" th:if="${#fields.hasErrors('recommendation')}"
+             th:errors="*{recommendation}"></p>
         </div>
         <div class="form-group">
-          <label for="isolationAtHome">Isolation At Home?</label>
-          <select th:field="*{isolationAtHome}" id="isolationAtHome" class="form-control">
-            <option value="0">No</option>
-            <option value="1">Yes</option>
-          </select>
-          <p class="text-danger" th:if="${#fields.hasErrors('isolationAtHome')}"
-             th:errors="*{isolationAtHome}"></p>
+          <label for="nameOfHospital">Name of Hospital If Referred</label>
+          <input type="text" placeholder="Name of Hospital if Referred" class="form-control" th:field="*{nameOfHospital}" id="nameOfHospital" maxlength="255" data-error="Name of Hospital Length should be Between 0-255"/>
+          <p class="text-danger" th:if="${#fields.hasErrors('nameOfHospital')}" th:errors="*{nameOfHospital}"></p>
+          <div class="help-block with-errors"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="enteredByName">Entered By Name</label>
+          <input required="true" type="text" placeholder="Name of Hospital if Referred" class="form-control" th:field="*{enteredByName}" id="enteredByName" maxlength="40" data-error="Name of Hospital Length should be Between 0-40"/>
+          <p class="text-danger" th:if="${#fields.hasErrors('enteredByName')}" th:errors="*{enteredByName}"></p>
+          <div class="help-block with-errors"></div>
         </div>
         <div class="form-group">
-          <label for="referToHospital">Refer To Hospital?</label>
-          <select th:field="*{referToHospital}" id="referToHospital" class="form-control">
-            <option value="0">No</option>
-            <option value="1">Yes</option>
-          </select>
-          <p class="text-danger" th:if="${#fields.hasErrors('referToHospital')}"
-             th:errors="*{referToHospital}"></p>
+          <label for="enteredByContact">Entered By Contact</label>
+          <input required="true" type="text" placeholder="Entered By Contact" class="form-control" th:field="*{enteredByContact}" id="enteredByContact" maxlength="40" data-error="Contact should be valid"/>
+          <p class="text-danger" th:if="${#fields.hasErrors('enteredByContact')}" th:errors="*{enteredByContact}"></p>
+          <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group">
+          <label for="remarks">Remarks</label>
+          <input type="text" placeholder="Remarks" class="form-control" th:field="*{remarks}" id="remarks" maxlength="255" data-error="Remarks"/>
+          <p class="text-danger" th:if="${#fields.hasErrors('remarks')}" th:errors="*{remarks}"></p>
+          <div class="help-block with-errors"></div>
         </div>
 
       </div>
@@ -189,10 +198,6 @@
           pattern: /[0-9]/, optional: true
         }
     }});
-
-    $('#myform').on('submit', function(e) {
-      $('#submit').attr('disabled', true);
-    });
   });
   // https://stackoverflow.com/questions/48538692/thymeleaf-checkboxes-with-objects-list-from-database
 </script>
