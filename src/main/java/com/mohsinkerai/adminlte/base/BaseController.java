@@ -34,7 +34,7 @@ public abstract class BaseController<E extends BaseEntity, I extends Serializabl
 
   /**
    * Return Static Values for Lookup Purpose - Such as List of Departments for Employee Controller
-   * List of HealthFacility, etc.
+   * List of Lookups, etc.
    *
    * It is needed for individual record (add/edit)
    */

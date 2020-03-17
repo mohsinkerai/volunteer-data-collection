@@ -42,16 +42,6 @@
 
       <column name="created_date" type="date"></column>
 
-<!--      <column name="house_hold_members_count" type="int" />-->
-<!--      <column name="uuid" type="varchar(255)"></column>-->
-<!--      <column name="visited_doctor_for_checkup" type="int" remarks="In the last 12 months have you visited doctor / hospital for medical checkup?"></column>-->
-<!--      <column name="insurance_coverage" type="int" remarks="Do you have health insurance coverage?"></column>-->
-<!--      <column name="self_insurance_coverage" type="int" remarks="Do you have health insurance coverage?"></column>-->
-<!--      <column name="employer_insurance_coverage" type="int" remarks="Do you have health insurance coverage?"></column>-->
-<!--      <column name="other_medical_facility_accessed" type="varchar(300)" remarks="Do you have health insurance coverage?"></column>-->
-<!--      <column name="other_disability" type="varchar(300)" remarks="Do you have health insurance coverage?"></column>-->
-<!--      <column name="smoke" type="int" remarks="Do you smoke?"></column>-->
-
       <!--AUDIT COLUMN-->
       <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_on" type="datetime">
         <constraints nullable="false" unique="false"/>
