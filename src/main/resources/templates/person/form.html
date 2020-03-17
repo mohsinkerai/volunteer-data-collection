@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout">
 <head>
-  <title>Jamati-Member Registration</title>
+  <title>Registration</title>
 </head>
 <body>
 <section layout:fragment="header">
-  <h1>Jamati-Member Registration</h1>
+  <h1>Registration</h1>
   <ol class="breadcrumb">
-    <li><a th:href="@{/}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-    <li class="active">Jamati-Member Registration</li>
+    <li><a th:href="@{/}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+    <li class="active">Registration</li>
   </ol>
 </section>
 <div layout:fragment="content">
@@ -145,7 +145,7 @@
         <div class="form-group">
           <label for="recommendation">Recommendations</label>
           <select th:field="*{recommendation}" id="recommendation" class="form-control">
-            <option value="Stable and discharged">Stable and discharged</option>
+            <option value="Stable and discharged">Stable (Nothing Required)</option>
             <option value="Isolation at Home">Isolation at Home</option>
             <option value="Refer to Hospital">Refer to Hospital</option>
           </select>
@@ -154,14 +154,14 @@
         </div>
         <div class="form-group">
           <label for="nameOfHospital">Name of Hospital If Referred</label>
-          <input type="text" placeholder="Name of Hospital if Referred" class="form-control" th:field="*{nameOfHospital}" id="nameOfHospital" maxlength="255" data-error="Name of Hospital Length should be Between 0-255"/>
+          <input type="text" placeholder="Name of Hospital if Referred" class="form-control" th:field="*{nameOfHospital}" id="nameOfHospital" maxlength="40" data-error="Name of Hospital Length should be Between 0-40"/>
           <p class="text-danger" th:if="${#fields.hasErrors('nameOfHospital')}" th:errors="*{nameOfHospital}"></p>
           <div class="help-block with-errors"></div>
         </div>
 
         <div class="form-group">
           <label for="enteredByName">Entered By Name</label>
-          <input required="true" type="text" placeholder="Name of Hospital if Referred" class="form-control" th:field="*{enteredByName}" id="enteredByName" maxlength="40" data-error="Name of Hospital Length should be Between 0-40"/>
+          <input required="true" type="text" placeholder="Entered by Person Name" class="form-control" th:field="*{enteredByName}" id="enteredByName" maxlength="40" data-error="Entered by Person Name Length should be Between 0-40"/>
           <p class="text-danger" th:if="${#fields.hasErrors('enteredByName')}" th:errors="*{enteredByName}"></p>
           <div class="help-block with-errors"></div>
         </div>
@@ -194,6 +194,12 @@
 
   $(document).ready(function() {
     $('#contactNumber').mask('000Z-0000000Z', {placeholder: "____-_______", translation: {
+        'Z': {
+          pattern: /[0-9]/, optional: true
+        }
+    }});
+
+    $('#enteredByContact').mask('000Z-0000000Z', {placeholder: "____-_______", translation: {
         'Z': {
           pattern: /[0-9]/, optional: true
         }
