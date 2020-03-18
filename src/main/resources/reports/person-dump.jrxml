@@ -102,7 +102,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ef9cae01-c59f-4783-8613-2f9912eb3669"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Id]]></text>
 			</staticText>
@@ -111,7 +111,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4e8e2ff4-93a1-4e87-8a20-cb4ceb6ec4f4"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Name]]></text>
 			</staticText>
@@ -120,7 +120,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e10964b9-ec9e-4f9e-846d-211e5cf5a98a"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Gender]]></text>
 			</staticText>
@@ -129,7 +129,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="95b5417b-7833-490e-84bc-fd63d9b9db6a"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Age]]></text>
 			</staticText>
@@ -138,7 +138,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="59cd9b08-1106-416d-89d1-32ab64c9dd48"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Council]]></text>
 			</staticText>
@@ -147,7 +147,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f27b43d5-38f8-4191-9613-d72463b31587"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Jamatkhana]]></text>
 			</staticText>
@@ -156,7 +156,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="03d02020-6c08-484e-8050-65d05135652c"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Contact Number]]></text>
 			</staticText>
@@ -165,7 +165,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d5abd1b8-fb55-4ea9-9617-00831902c09d"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Residential Address]]></text>
 			</staticText>
@@ -174,7 +174,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e11f63ed-0c79-4e60-a3fb-82dbcd952b25"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fever]]></text>
 			</staticText>
@@ -183,7 +183,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="53f12937-136e-4a3d-8a64-d89b0784bbbb"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cough]]></text>
 			</staticText>
@@ -192,7 +192,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2fa60d96-30c4-4bf6-be34-0e7a1d992dc3"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Suspect Stable]]></text>
 			</staticText>
@@ -201,7 +201,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ee523e10-fbd5-49d4-816d-936b0461c0a1"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Contact History]]></text>
 			</staticText>
@@ -210,7 +210,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9830e22a-5e0a-471f-83b4-fec072f1d7ad"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Travel History]]></text>
 			</staticText>
@@ -219,7 +219,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6a77fcac-9740-49a8-bc64-835ac4033c27"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[S.O.B]]></text>
 			</staticText>
@@ -228,7 +228,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c2b58f12-ef76-4245-9f5f-9cf73e7ef1c5"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Recommendation]]></text>
 			</staticText>
@@ -237,7 +237,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6f78e264-a2e4-4e64-91f4-459c9f09423a"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Name Of Hospital]]></text>
 			</staticText>
@@ -246,7 +246,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f5931bf0-66bb-403c-9d33-bee97c0ea574"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Entered By Name]]></text>
 			</staticText>
@@ -255,7 +255,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c8b3f235-371e-4124-8b49-b773a52d37f4"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Entered By Contact]]></text>
 			</staticText>
@@ -264,7 +264,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3f2a2969-395c-42c3-a72e-f20295ce312b"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Remarks]]></text>
 			</staticText>
@@ -273,7 +273,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5c01d574-a132-48fe-b5ba-814da9337de1"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Created On]]></text>
 			</staticText>
@@ -282,7 +282,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d62b72b4-8e95-45d4-8b8c-d5bea4f7dcd3"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Created By]]></text>
 			</staticText>
@@ -291,7 +291,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e3778893-f105-444a-b479-9ff5871f802e"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Updated On]]></text>
 			</staticText>
@@ -300,7 +300,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4ce0129a-b517-488a-9dff-26883db8a696"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Updated By]]></text>
 			</staticText>
@@ -316,7 +316,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
@@ -326,7 +326,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
@@ -336,7 +336,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{gender}]]></textFieldExpression>
 			</textField>
@@ -346,7 +346,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{age}]]></textFieldExpression>
 			</textField>
@@ -356,7 +356,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{jamatkhana.name}]]></textFieldExpression>
 			</textField>
@@ -366,7 +366,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{jamatkhanaName}]]></textFieldExpression>
 			</textField>
@@ -376,7 +376,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{contactNumber}]]></textFieldExpression>
 			</textField>
@@ -386,7 +386,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{residentialAddress}]]></textFieldExpression>
 			</textField>
@@ -396,7 +396,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fever}]]></textFieldExpression>
 			</textField>
@@ -406,7 +406,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cough}]]></textFieldExpression>
 			</textField>
@@ -416,7 +416,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{suspectStable}]]></textFieldExpression>
 			</textField>
@@ -426,7 +426,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{contactHistory}]]></textFieldExpression>
 			</textField>
@@ -436,7 +436,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{travelHistory}]]></textFieldExpression>
 			</textField>
@@ -446,7 +446,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{shortnessOfBreath}]]></textFieldExpression>
 			</textField>
@@ -456,7 +456,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{recommendation}]]></textFieldExpression>
 			</textField>
@@ -466,7 +466,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nameOfHospital}]]></textFieldExpression>
 			</textField>
@@ -476,7 +476,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{enteredByName}]]></textFieldExpression>
 			</textField>
@@ -486,7 +486,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{enteredByContact}]]></textFieldExpression>
 			</textField>
@@ -496,7 +496,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{remarks}]]></textFieldExpression>
 			</textField>
@@ -506,7 +506,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm").withZone(java.time.ZoneId.of("Asia/Karachi")).format($F{createdOn}.atZone(java.time.ZoneId.systemDefault()).toInstant());]]></textFieldExpression>
 			</textField>
@@ -516,7 +516,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{createdBy}]]></textFieldExpression>
 			</textField>
@@ -526,7 +526,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm").withZone(java.time.ZoneId.of("Asia/Karachi")).format($F{updatedOn}.atZone(java.time.ZoneId.systemDefault()).toInstant());]]></textFieldExpression>
 			</textField>
@@ -536,7 +536,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{updatedBy}]]></textFieldExpression>
 			</textField>

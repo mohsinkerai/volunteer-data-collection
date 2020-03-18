@@ -46,8 +46,8 @@ server:
       directory: ./
     basedir: logs
 logging:
-  file: logs/hbp.log
-  file.name: hbp.log
-  file.path: logs
-  file.max-history: 3
-  file.max-size: 1MB
+  file:
+    name: hbp.log
+    path: logs
+    max-history: 3
+    max-size: 1MB
