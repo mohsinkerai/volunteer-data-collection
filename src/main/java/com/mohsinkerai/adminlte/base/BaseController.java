@@ -47,8 +47,7 @@ public abstract class BaseController<E extends BaseEntity, I extends Serializabl
 
   @RequestMapping(value = "{pageNumber}", method = RequestMethod.GET)
   public String list(@PathVariable Integer pageNumber, Model model) {
-    PageRequest pageRequest =
-      new PageRequest(pageNumber - 1, PAGE_SIZE, Sort.Direction.DESC, "id");
+    PageRequest pageRequest = PageRequest.of(pageNumber - 1, PAGE_SIZE, Sort.Direction.DESC, "id");
     Page<E> page = baseService.findAll(pageRequest);
 
     int current = page.getNumber() + 1;
