@@ -46,8 +46,8 @@ server:
       directory: ./
     basedir: logs
 logging:
-  file: logs/app.log
-  file.name: application-spring.log
-  file.path: /var/log
-  file.max-history: 10
+  file: logs/hbp.log
+  file.name: hbp.log
+  file.path: logs
+  file.max-history: 3
   file.max-size: 1MB
