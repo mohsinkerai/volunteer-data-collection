@@ -2,6 +2,8 @@ package com.mohsinkerai.adminlte.person;
 
 import com.google.common.collect.ImmutableMap;
 import com.mohsinkerai.adminlte.base.SimpleBaseController;
+import com.mohsinkerai.adminlte.person.updates.PersonUpdates;
+import com.mohsinkerai.adminlte.person.updates.PersonUpdatesService;
 import com.mohsinkerai.adminlte.users.MyUser;
 import com.mohsinkerai.adminlte.users.MyUserService;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -29,13 +31,16 @@ public class PersonController extends SimpleBaseController<Person> {
 
   private final MyUserService myUserService;
   private final PersonService personService;
+  private final PersonUpdatesService personUpdatesService;
 
   protected PersonController(
     PersonService personService,
-    MyUserService myUserService) {
+    MyUserService myUserService,
+    PersonUpdatesService personUpdatesService) {
     super(personService);
     this.myUserService = myUserService;
     this.personService = personService;
+    this.personUpdatesService = personUpdatesService;
   }
 
   @InitBinder
@@ -52,6 +57,10 @@ public class PersonController extends SimpleBaseController<Person> {
   @Override
   protected String viewPath() {
     return URL_PATH;
+  }
+
+  protected String personUpdatesViewPath() {
+    return URL_PATH + "/updates";
   }
 
   @Override
@@ -121,5 +130,40 @@ public class PersonController extends SimpleBaseController<Person> {
       .format("Successfully Saved Jamati Memeber with Name <b><mark>%s</mark></b> and id <mark><b>%04d</b></mark>", person.getName(),
         person.getId()));
     return "redirect:/" + urlPath() + "/add";
+  }
+
+  @RequestMapping("{person}/updates/add")
+  @PreAuthorize("hasAuthority('LEAD')")
+  public String addComments(@PathVariable Person person, Model model) {
+    model.addAttribute("urlPath", String.format("%s/%s/updates/add", urlPath(), person.getId()));
+    // verifyJK
+
+    PersonUpdates personUpdates = new PersonUpdates();
+    personUpdates.setPerson(person);
+
+    model.addAttribute("data", personUpdates);
+    return personUpdatesViewPath() + "/form";
+  }
+
+  @RequestMapping(value = "{person}/updates/add/save", method = RequestMethod.POST)
+  @PreAuthorize("hasAuthority('LEAD')")
+  public String saveComments(PersonUpdates personUpdates, BindingResult bindingResult, Model model, RedirectAttributes ra, @PathVariable Person person) {
+    if (bindingResult.hasErrors()) {
+      model.addAttribute("data", personUpdates);
+      model.addAttribute("urlPath", String.format("%s/%s/updates/add", urlPath(), person.getId()));
+      model.addAttribute("org.springframework.validation.BindingResult.data", bindingResult);
+      return personUpdatesViewPath() + "/form";
+    }
+
+    personUpdatesService.save(personUpdates);
+    person.setLastRemarks(personUpdates.getRemarks());
+    person.setLastStatus(personUpdates.getStatus());
+    personService.save(person);
+
+    ra.addFlashAttribute("formSaved", String
+      .format("Added Updates on Jamati Member with Name <b><mark>%s</mark></b> and id <mark><b>%04d</b></mark>", person.getName(),
+        person.getId()));
+
+    return "redirect:/" + urlPath();
   }
 }

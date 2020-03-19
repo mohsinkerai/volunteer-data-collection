@@ -1,16 +1,18 @@
 package com.mohsinkerai.adminlte.person;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.google.common.collect.Sets;
 import com.mohsinkerai.adminlte.base.BaseEntity;
 import com.mohsinkerai.adminlte.config.ProjectConstant;
 import com.mohsinkerai.adminlte.jamatkhana.Jamatkhana;
+import com.mohsinkerai.adminlte.person.updates.PersonUpdates;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -52,4 +54,7 @@ public class Person extends BaseEntity {
   @DateTimeFormat(pattern = ProjectConstant.DATE_HTML_FORMAT)
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = ProjectConstant.DATE_FORMAT)
   private LocalDate createdDate;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+  private List<PersonUpdates> personUpdates;
 }
