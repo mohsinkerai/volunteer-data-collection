@@ -66,4 +66,14 @@
       constraintName="person_jamatkhana_id_fk"
       referencedTableName="jamatkhana" referencedColumnNames="id"/>
   </changeSet>
+  <changeSet id="person-03" author="mohsin.kerai">
+    <addColumn tableName="person">
+      <column name="last_status" afterColumn="remarks" type="varchar(255)"></column>
+    </addColumn>
+  </changeSet>
+  <changeSet id="person-04" author="mohsin.kerai">
+    <addColumn tableName="person">
+      <column name="last_remarks" afterColumn="last_status" type="varchar(2000)"></column>
+    </addColumn>
+  </changeSet>
 </databaseChangeLog>

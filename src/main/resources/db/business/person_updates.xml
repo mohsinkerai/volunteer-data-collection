@@ -1,0 +1,37 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+  <changeSet id="person_updates-01" author="mohsin.kerai">
+    <createTable remarks="Table to Store Person Basic Information"
+      tableName="person_updates">
+      <column autoIncrement="true" name="id" type="bigint">
+        <constraints nullable="false" primaryKey="true" unique="true"/>
+      </column>
+      <column name="version" type="bigint" defaultValue="1"></column>
+
+      <column name="status" type="varchar(255)" />
+      <column name="remarks" type="varchar(2000)" />
+      <column name="person_id" type="bigint" />
+
+      <!--AUDIT COLUMN-->
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_on" type="datetime">
+        <constraints nullable="false" unique="false"/>
+      </column>
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="updated_on" type="datetime">
+        <constraints nullable="false" unique="false"/>
+      </column>
+      <column defaultValueComputed="null" name="created_by" type="varchar(255)">
+        <constraints nullable="true" unique="false"/>
+      </column>
+      <column defaultValueComputed="null" name="updated_by" type="varchar(255)">
+        <constraints nullable="true" unique="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet id="person_updates-02" author="mohsin.kerai">
+    <addForeignKeyConstraint baseTableName="person_updates" baseColumnNames="person_id"
+      constraintName="person_updates_person_id_fk"
+      referencedTableName="person" referencedColumnNames="id"/>
+  </changeSet>
+</databaseChangeLog>

@@ -15,4 +15,5 @@
 
   <!--BUSINESS-->
   <include file="business/person.xml" relativeToChangelogFile="true"/>
+  <include file="business/person_updates.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

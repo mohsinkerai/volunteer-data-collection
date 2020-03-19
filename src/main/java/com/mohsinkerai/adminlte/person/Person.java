@@ -43,7 +43,11 @@ public class Person extends BaseEntity {
   @ManyToOne
   @JoinColumn(name = "jamatkhana_id")
   private Jamatkhana jamatkhana;
+
   private String jamatkhanaName;
+
+  private String lastStatus = PersonStatus.INITIATED.name();
+  private String lastRemarks = "";
 
   @DateTimeFormat(pattern = ProjectConstant.DATE_HTML_FORMAT)
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = ProjectConstant.DATE_FORMAT)
