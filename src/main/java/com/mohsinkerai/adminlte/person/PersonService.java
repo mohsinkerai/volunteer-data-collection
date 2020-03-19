@@ -53,7 +53,7 @@ public class PersonService extends SimpleBaseService<Person> {
     Person person = findOne(personId)
       .orElseThrow(() -> new RuntimeException(String.format("Id %d Doesn't Exist", personId)));
     MyUser currentLoggedInUser = myUserService.getCurrentLoggedInUser();
-    return ChronoUnit.DAYS.between(person.getCreatedDate(), LocalDate.now()) < 2 || hasRole(currentLoggedInUser, "ADMIN") || hasRole(currentLoggedInUser, "LEAD");
+    return ChronoUnit.DAYS.between(person.getCreatedDate(), LocalDate.now()) < 1 || hasRole(currentLoggedInUser, "ADMIN");
   }
 
   public List<Person> findByJamatkhanaIn(Collection<Jamatkhana> jamatkhanas) {

@@ -28,6 +28,7 @@
       </a>
       <ul class="treeview-menu">
         <li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/admin/report/forms/dump}"><i class="fa fa-circle-o"></i>Excel Dump Download</a></li>
+        <li sec:authorize="hasAuthority('REPORT')"><a th:href="@{/user/report/forms/dump}"><i class="fa fa-circle-o"></i>Excel Dump Download for Jamatkhana</a></li>
       </ul>
     </li>
     <li class="treeview"

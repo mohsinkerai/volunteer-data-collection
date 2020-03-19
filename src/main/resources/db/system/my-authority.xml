@@ -51,4 +51,10 @@
       <column name="name" value="LEAD"/>
     </insert>
   </changeSet>
+  <changeSet id="my-authority-06" author="mohsin.kerai">
+    <insert tableName="my_authority">
+      <column name="id" value="4"/>
+      <column name="name" value="REPORT"/>
+    </insert>
+  </changeSet>
 </databaseChangeLog>
