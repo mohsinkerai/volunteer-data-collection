@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -49,8 +51,10 @@ public class ReportingController {
     JamatkhanaAndDateDto dto = new JamatkhanaAndDateDto(null, LocalDate.now(), LocalDate.now());
 
     Set<Jamatkhana> jks = myUserService.getCurrentLoggedInUser().getJamatkhanas();
+    ArrayList<Jamatkhana> jamatkhanas = Lists.newArrayList(jks);
+    jamatkhanas.sort(Comparator.comparing(Jamatkhana::getName));
 
-    model.addAttribute("jks", jks);
+    model.addAttribute("jks", jamatkhanas);
     model.addAttribute("data", dto);
     model.addAttribute("urlPath", ReportingController.REPORT_CONTROLLER_NAME + "/forms/dump");
 
