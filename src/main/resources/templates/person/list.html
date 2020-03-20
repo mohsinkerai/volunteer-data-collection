@@ -41,7 +41,7 @@
             <td th:text="${row.name}"></td>
             <td th:text="${row.gender}"></td>
             <td th:text="${row.jamatkhana.name}"></td>
-            <td th:text="${row.updatedOn}"></td>
+            <td th:text="${T(com.mohsinkerai.adminlte.utils.TimeZoneUtils).convertTimeZone(row.updatedOn, 'dd-MMM-yyyy HH:mm', 'Asia/Karachi')}"></td>
             <td>
               <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/{urlPath}/edit/{rowId}(urlPath=${urlPath}, rowId=${row.id})}"><button class="btn btn-default">Edit</button></a>
               <a sec:authorize="hasAuthority('USER') && !hasAuthority('ADMIN')" th:if="${#temporals.createNow().minusDays(1).minusHours(4) < row.createdOn}" th:href="@{/{urlPath}/edit/{rowId}(urlPath=${urlPath}, rowId=${row.id})}"><button class="btn btn-default">Edit</button></a> -
