@@ -26,4 +26,6 @@ public interface PersonRepository extends SimpleBaseRepository<Person> {
   List<JamatkhanaSummaryDto> findBySummaryPerJamatkhanaBetween(LocalDate fromCreatedDate, LocalDate toCreatedDate);
 
   List<Person> findByJamatkhanaAndCreatedDateBetween(Jamatkhana jamatkhana, LocalDate fromCreatedDate, LocalDate toCreatedDate);
+
+  List<Person> findByJamatkhanaInAndCreatedDateBetween(Collection<Jamatkhana> jamatkhanas, LocalDate fromCreatedDate, LocalDate toCreatedDate);
 }

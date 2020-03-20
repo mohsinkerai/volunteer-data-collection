@@ -57,7 +57,8 @@ public class PersonService extends SimpleBaseService<Person> {
     Person person = findOne(personId)
       .orElseThrow(() -> new RuntimeException(String.format("Id %d Doesn't Exist", personId)));
     MyUser currentLoggedInUser = myUserService.getCurrentLoggedInUser();
-    return ChronoUnit.DAYS.between(person.getCreatedDate(), LocalDate.now()) < 1 || hasRole(currentLoggedInUser, "ADMIN");
+    return (ChronoUnit.DAYS.between(person.getCreatedDate(), LocalDate.now()) < 1 && hasRole(currentLoggedInUser, "USER"))
+      || hasRole(currentLoggedInUser, "ADMIN");
   }
 
   public List<Person> findByJamatkhanaIn(Collection<Jamatkhana> jamatkhanas) {
@@ -74,6 +75,10 @@ public class PersonService extends SimpleBaseService<Person> {
 
   public List<Person> findByJamatkhanaAndCreatedDateBetween(Jamatkhana jamatkhana, LocalDate fromCreatedDate, LocalDate toCreatedDate) {
     return personRepository.findByJamatkhanaAndCreatedDateBetween(jamatkhana, fromCreatedDate, toCreatedDate);
+  }
+
+  public List<Person> findByJamatkhanaInAndCreatedDateBetween(Collection<Jamatkhana> jamatkhanas, LocalDate fromCreatedDate, LocalDate toCreatedDate) {
+    return personRepository.findByJamatkhanaInAndCreatedDateBetween(jamatkhanas, fromCreatedDate, toCreatedDate);
   }
 
   public List<Person> findByCreatedDateBetween(LocalDate fromCreatedDate, LocalDate toCreatedDate) {

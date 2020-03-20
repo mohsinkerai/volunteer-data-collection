@@ -88,4 +88,39 @@ public class ReportingController {
 
     return new HttpEntity<byte[]>(bytes, headers);
   }
+
+  @GetMapping("forms/all/dump")
+  public String formsDumpAllAssignedJKSelectorPage(Model model) {
+    JamatkhanaAndDateDto dto = new JamatkhanaAndDateDto(null, LocalDate.now(), LocalDate.now());
+
+    model.addAttribute("jks", Lists.newArrayList());
+    model.addAttribute("data", dto);
+    model.addAttribute("urlPath", ReportingController.REPORT_CONTROLLER_NAME + "/forms/all/dump");
+
+    return "report/" + "by-jamatkhana";
+  }
+
+  @GetMapping("forms/all/dump/download")
+  public HttpEntity<byte[]> formsDumperAllAssignedJK(JamatkhanaAndDateDto jamatkhanaAndDateDto, Model model) throws JRException {
+    LocalDate fromDate = jamatkhanaAndDateDto.getFromDate();
+    LocalDate toDate = jamatkhanaAndDateDto.getToDate();
+    Set<Jamatkhana> jamatkhanas = myUserService.getCurrentLoggedInUser().getJamatkhanas();
+
+    List<Person> jamatkhanaSummary = personService
+      .findByJamatkhanaInAndCreatedDateBetween(jamatkhanas, fromDate, toDate);
+
+    ImmutableMap<String, Object> params = ImmutableMap.of(
+      "REPORT_NAME", "Entries by JK Summary",
+      "FROM_DATE", Date.valueOf(fromDate),
+      "TO_DATE", Date.valueOf(toDate));
+
+    // Return Report Here
+    byte[] bytes = personDumpReportGenerator.generateXLSXReport(jamatkhanaSummary, Maps.newHashMap(params));
+
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
+    headers.set(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=" + "persons-dump-all-assigned-jk" + ".xlsx");
+
+    return new HttpEntity<byte[]>(bytes, headers);
+  }
 }

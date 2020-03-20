@@ -27,8 +27,9 @@
         <i class="fa fa-angle-left pull-right"></i>
       </a>
       <ul class="treeview-menu">
-        <li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/admin/report/forms/dump}"><i class="fa fa-circle-o"></i>Excel Dump Download</a></li>
-        <li sec:authorize="hasAuthority('REPORT')"><a th:href="@{/user/report/forms/dump}"><i class="fa fa-circle-o"></i>Excel Report for Council</a></li>
+        <li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/admin/report/forms/dump}"><i class="fa fa-circle-o"></i>All Data Report</a></li>
+        <li sec:authorize="hasAuthority('REPORT')"><a th:href="@{/user/report/forms/dump}"><i class="fa fa-circle-o"></i>Council Report</a></li>
+        <li sec:authorize="hasAuthority('REPORT')"><a th:href="@{/user/report/forms/dump}"><i class="fa fa-circle-o"></i>My Assigned Councils Report</a></li>
       </ul>
     </li>
     <li class="treeview"
