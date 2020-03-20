@@ -84,3 +84,5 @@ logs
 src/main/resources/users.csv
 src/main/resources/users2.csv
 deploy.sh
+hbp.log
+*.gz

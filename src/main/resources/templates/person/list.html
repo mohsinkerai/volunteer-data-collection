@@ -40,6 +40,7 @@
             <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/{urlPath}/edit/{rowId}(urlPath=${urlPath}, rowId=${row.id})}"><button class="btn btn-default">Edit</button></a>
             <a sec:authorize="!hasAuthority('ADMIN')" th:if="${#temporals.createNow().minusDays(1).minusHours(4) < row.createdOn}" th:href="@{/{urlPath}/edit/{rowId}(urlPath=${urlPath}, rowId=${row.id})}"><button class="btn btn-default">Edit</button></a> -
             <a sec:authorize="hasAuthority('LEAD')" th:href="@{/{urlPath}/{rowId}/updates/add(urlPath=${urlPath}, rowId=${row.id})}"><button class="btn btn-primary">Add Updates</button></a> -
+            <a sec:authorize="hasAuthority('LEAD')" th:href="@{/{urlPath}/{rowId}/updates(urlPath=${urlPath}, rowId=${row.id})}"><button class="btn btn-default">View Updates</button></a> -
             <form sec:authorize="hasAuthority('ADMIN')" th:object="${row}" th:action="@{/{urlPath}/delete/{rowId}(urlPath=${urlPath}, rowId=${row.id})}" th:method="delete" style="display: inline" onsubmit="return (confirm('Sure your want to delete this entry?'))">
               <input class="btn btn-danger" style="cursor: pointer" type="submit" value="Delete" />
             </form>

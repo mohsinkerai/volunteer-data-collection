@@ -1,11 +1,14 @@
 package com.mohsinkerai.adminlte.person;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import com.mohsinkerai.adminlte.base.SimpleBaseController;
+import com.mohsinkerai.adminlte.jamatkhana.Jamatkhana;
 import com.mohsinkerai.adminlte.person.updates.PersonUpdates;
 import com.mohsinkerai.adminlte.person.updates.PersonUpdatesService;
 import com.mohsinkerai.adminlte.users.MyUser;
 import com.mohsinkerai.adminlte.users.MyUserService;
+import com.mohsinkerai.adminlte.utils.VerificationUtils;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -20,8 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping(PersonController.URL_PATH)
@@ -70,8 +72,10 @@ public class PersonController extends SimpleBaseController<Person> {
 
   @Override
   protected Map<String, Object> getAttributes() {
-    MyUser currentUser = myUserService.getCurrentLoggedInUser();
-    return ImmutableMap.of("jks", currentUser.getJamatkhanas());
+    Set<Jamatkhana> jks = myUserService.getCurrentLoggedInUser().getJamatkhanas();
+    ArrayList<Jamatkhana> jamatkhanas = Lists.newArrayList(jks);
+    jamatkhanas.sort(Comparator.comparing(Jamatkhana::getName));
+    return ImmutableMap.of("jks", jamatkhanas);
   }
 
   @Override
@@ -136,7 +140,9 @@ public class PersonController extends SimpleBaseController<Person> {
   @PreAuthorize("hasAuthority('LEAD')")
   public String addComments(@PathVariable Person person, Model model) {
     model.addAttribute("urlPath", String.format("%s/%s/updates/add", urlPath(), person.getId()));
-    // verifyJK
+
+    MyUser currentLoggedInUser = myUserService.getCurrentLoggedInUser();
+    VerificationUtils.hasValidJk(currentLoggedInUser, person);
 
     PersonUpdates personUpdates = new PersonUpdates();
     personUpdates.setPerson(person);
@@ -147,13 +153,16 @@ public class PersonController extends SimpleBaseController<Person> {
 
   @RequestMapping(value = "{person}/updates/add/save", method = RequestMethod.POST)
   @PreAuthorize("hasAuthority('LEAD')")
-  public String saveComments(PersonUpdates personUpdates, BindingResult bindingResult, Model model, RedirectAttributes ra, @PathVariable Person person) {
+  public String saveComments(PersonUpdates personUpdates, BindingResult bindingResult, Model model, @PathVariable Person person, final RedirectAttributes ra) {
     if (bindingResult.hasErrors()) {
       model.addAttribute("data", personUpdates);
       model.addAttribute("urlPath", String.format("%s/%s/updates/add", urlPath(), person.getId()));
       model.addAttribute("org.springframework.validation.BindingResult.data", bindingResult);
       return personUpdatesViewPath() + "/form";
     }
+
+    MyUser currentLoggedInUser = myUserService.getCurrentLoggedInUser();
+    VerificationUtils.hasValidJk(currentLoggedInUser, person);
 
     personUpdatesService.save(personUpdates);
     person.setLastRemarks(personUpdates.getRemarks());
@@ -164,6 +173,29 @@ public class PersonController extends SimpleBaseController<Person> {
       .format("Added Updates on Jamati Member with Name <b><mark>%s</mark></b> and id <mark><b>%04d</b></mark>", person.getName(),
         person.getId()));
 
-    return "redirect:/" + urlPath();
+    return "redirect:/" + String.format("%s/%s/updates", urlPath(), person.getId());
+  }
+
+  @RequestMapping("{person}/updates")
+  @PreAuthorize("hasAuthority('LEAD')")
+  public String viewUpdates(@PathVariable Person person, Model model) {
+    MyUser currentLoggedInUser = myUserService.getCurrentLoggedInUser();
+    VerificationUtils.hasValidJk(currentLoggedInUser, person);
+    Person updatedPerson = personService.fetchUpdates(person);
+
+    int current = 1;
+    int totalPages = 1;
+    int begin = Math.max(1, current - PAGE_SIZE);
+    int end = Math.min(begin + PAGE_SIZE, totalPages == 0 ? 1 : totalPages);
+
+    model.addAttribute("urlPath", urlPath());
+
+    model.addAttribute("list", updatedPerson.getPersonUpdates());
+    model.addAttribute("person", updatedPerson);
+    model.addAttribute("beginIndex", begin);
+    model.addAttribute("endIndex", end);
+    model.addAttribute("currentIndex", current);
+
+    return personUpdatesViewPath() + "/list";
   }
 }

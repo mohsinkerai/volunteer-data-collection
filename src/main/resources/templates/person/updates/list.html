@@ -1,0 +1,90 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+  <title>Jamati Member Updates</title>
+</head>
+<body>
+<section layout:fragment="header">
+  <h1>Jamati Member Updates</h1>
+  <ol class="breadcrumb">
+    <li><a th:href="@{/}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li class="active">Jamati Member Updates</li>
+  </ol>
+</section>
+<div layout:fragment="content">
+  <div class="box box-warning">
+    <div class="box-header with-border">
+      <h3 class="box-title">Jamati Member Details</h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+      </div>
+      <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body" style="">
+      <div class="box box-widget widget-user-2">
+          <!-- Add the bg color to the header using any of the bg-* classes -->
+          <div class="widget-user-header bg-blue">
+            <!-- /.widget-user-image -->
+            <h3 class="widget-user-username"><span th:text="${person.name}"></span>&nbsp;|&nbsp;<span th:text="${person.contactNumber}"></span></h3>
+            <h5 class="widget-user-desc"><span th:text="${person.jamatkhana.name}"></span>
+              &nbsp;|&nbsp;<span th:text="${person.jamatkhanaName}"></span>
+            </h5>
+          </div>
+          <div class="box-footer no-padding">
+            <ul class="nav nav-stacked">
+              <li><a>Travel History <span class="pull-right badge bg-green" th:text="${person.travelHistory?'Yes':'No'}">31</span></a></li>
+              <li><a>Contact History <span class="pull-right badge bg-green" th:text="${person.contactHistory?'Yes':'No'}">31</span></a></li>
+              <li><a>Fever <span class="pull-right badge bg-green" th:text="${person.fever?'Yes':'No'}">31</span></a></li>
+              <li><a>Cough <span class="pull-right badge bg-green" th:text="${person.cough?'Yes':'No'}">31</span></a></li>
+              <li><a>Shortness Of Breath <span class="pull-right badge bg-green" th:text="${person.shortnessOfBreath?'Yes':'No'}">31</span></a></li>
+            </ul>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="box-header with-border">
+      <h3 class="box-title">Updates</h3>
+      <div class="box-tools pull-right">
+        <a th:href="@{/{urlPath}/add(urlPath=${urlPath})}" type="button" class="btn btn-box-tool"><i
+          class="fa fa-plus"></i></a>
+        <br clear="all"/>
+      </div>
+    </div>
+    <div class="box-body no-padding">
+      <table class="table table-striped">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Updated By</th>
+          <th>Updated On</th>
+        </tr>
+        <tr th:each="row : ${list}">
+          <td th:text="${row.id}"></td>
+          <td th:text="${row.status}"></td>
+          <td th:text="${row.remarks}"></td>
+          <td th:text="${row.createdBy}"></td>
+          <td th:text="${row.createdOn}"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="box-footer clearfix">
+      <ul class="pagination pagination-sm no-margin pull-right">
+        <li><a th:href="@{/{urlPath}/{page}(urlPath=${urlPath},page=1)}">First</a></li>
+        <li th:each="p : ${#numbers.sequence(1, endIndex/beginIndex)}"
+            th:class="${p == currentIndex} ? 'active' : ''">
+          <a th:href="@{/{urlPath}/{page}(urlPath=${urlPath},page=${p})}" th:text="${p}"></a>
+        </li>
+        <li><a th:href="@{/{urlPath}/{page}(urlPath=${urlPath},page=${endIndex})}">Last</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

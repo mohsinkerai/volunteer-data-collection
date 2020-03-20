@@ -1,16 +1,20 @@
 package com.mohsinkerai.adminlte.person;
 
+import com.mohsinkerai.adminlte.base.BaseEntity;
 import com.mohsinkerai.adminlte.base.SimpleBaseService;
 import com.mohsinkerai.adminlte.jamatkhana.Jamatkhana;
+import com.mohsinkerai.adminlte.person.updates.PersonUpdates;
 import com.mohsinkerai.adminlte.report.dto.JamatkhanaSummaryDto;
 import com.mohsinkerai.adminlte.users.MyUser;
 import com.mohsinkerai.adminlte.users.MyUserService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -74,6 +78,13 @@ public class PersonService extends SimpleBaseService<Person> {
 
   public List<Person> findByCreatedDateBetween(LocalDate fromCreatedDate, LocalDate toCreatedDate) {
     return personRepository.findByCreatedDateBetween(fromCreatedDate, toCreatedDate);
+  }
+
+  @Transactional
+  public Person fetchUpdates(Person person) {
+    List<PersonUpdates> personUpdates = person.getPersonUpdates();
+    personUpdates.sort(Comparator.comparing(BaseEntity::getCreatedOn).reversed());
+    return person;
   }
 
   private boolean hasRole(MyUser currentUser, String role) {

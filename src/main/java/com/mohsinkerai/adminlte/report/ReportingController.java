@@ -83,7 +83,6 @@ public class ReportingController {
     byte[] bytes = personDumpReportGenerator.generateXLSXReport(jamatkhanaSummary, Maps.newHashMap(params));
 
     HttpHeaders headers = new HttpHeaders();
-//    headers.setContentType(MediaType.APPLICATION_PDF);
     headers.setContentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
     headers.set(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=" + "persons-dump-" + jamatkhana.getName() + ".xlsx");
 
