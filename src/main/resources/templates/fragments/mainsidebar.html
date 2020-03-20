@@ -14,10 +14,10 @@
         <i class="fa fa-angle-left pull-right"></i>
       </a>
       <ul class="treeview-menu">
+        <li th:classappend="${#httpServletRequest.requestURI.startsWith('/person/add')? 'active':''}"><a th:href="@{/person/add}"><i class="fa fa-circle-o"></i>Add Jamati-Member</a></li>
         <li sec:authorize="hasAuthority('ADMIN')" th:classappend="${#httpServletRequest.requestURI.startsWith('/person')? 'active':''}"><a th:href="@{/person}"><i class="fa fa-circle-o"></i> All Jamati-Members</a></li>
         <li sec:authorize="!hasAuthority('ADMIN')" th:classappend="${#httpServletRequest.requestURI.startsWith('/person')? 'active':''}"><a th:href="@{/person/jk}"><i class="fa fa-circle-o"></i> Jamati-Members</a></li>
         <li><a th:href="@{/jamatkhana}" sec:authorize="hasAuthority('ADMIN')"><i class="fa fa-circle-o"></i>Council</a></li>
-        <li th:classappend="${#httpServletRequest.requestURI.startsWith('/person/add')? 'active':''}"><a th:href="@{/person/add}"><i class="fa fa-circle-o"></i>Add Person</a></li>
       </ul>
     </li>
     <li class="treeview" th:classappend="${#httpServletRequest.requestURI.startsWith('/customers')? 'active':''}"  sec:authorize="hasAuthority('ADMIN')">
@@ -29,7 +29,7 @@
       <ul class="treeview-menu">
         <li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/admin/report/forms/dump}"><i class="fa fa-circle-o"></i>All Data Report</a></li>
         <li sec:authorize="hasAuthority('REPORT')"><a th:href="@{/user/report/forms/dump}"><i class="fa fa-circle-o"></i>Council Report</a></li>
-        <li sec:authorize="hasAuthority('REPORT')"><a th:href="@{/user/report/forms/dump}"><i class="fa fa-circle-o"></i>My Assigned Councils Report</a></li>
+        <li sec:authorize="hasAuthority('REPORT')"><a th:href="@{/user/report/forms/all/dump}"><i class="fa fa-circle-o"></i>My Assigned Councils Report</a></li>
       </ul>
     </li>
     <li class="treeview"

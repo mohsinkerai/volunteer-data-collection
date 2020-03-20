@@ -10,6 +10,9 @@ import com.mohsinkerai.adminlte.users.MyUser;
 import com.mohsinkerai.adminlte.users.MyUserService;
 import com.mohsinkerai.adminlte.utils.VerificationUtils;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -87,7 +90,21 @@ public class PersonController extends SimpleBaseController<Person> {
   @Override
   @PreAuthorize("hasAuthority('ADMIN')")
   public String list(@PathVariable Integer pageNumber, Model model) {
-    return super.list(pageNumber, model);
+    List<Person> page = baseService.findAll();
+
+    int current = 1;
+    int totalPages = 1;
+    int begin = Math.max(1, current - PAGE_SIZE);
+    int end = Math.min(begin + PAGE_SIZE, totalPages == 0 ? 1 : totalPages);
+
+    model.addAttribute("urlPath", urlPath());
+
+    model.addAttribute("list", page);
+    model.addAttribute("beginIndex", begin);
+    model.addAttribute("endIndex", end);
+    model.addAttribute("currentIndex", current);
+
+    return viewPath() + "/list";
   }
 
   @RequestMapping(value = "/jk", method = RequestMethod.GET)
