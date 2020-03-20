@@ -59,18 +59,16 @@
     <div class="box-body no-padding">
       <table class="table table-striped">
         <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Gender</th>
-          <th>Updated By</th>
-          <th>Updated On</th>
+          <th>Status</th>
+          <th>Remarks</th>
+          <th>Added By</th>
+          <th>Added On</th>
         </tr>
         <tr th:each="row : ${list}">
-          <td th:text="${row.id}"></td>
-          <td th:text="${row.status}"></td>
+          <td class="badge" th:classappend="${'bg-' + statusColor.get(row.status)}" th:text="${row.status}"></td>
           <td th:text="${row.remarks}"></td>
           <td th:text="${row.createdBy}"></td>
-          <td th:text="${row.createdOn}"></td>
+          <td th:text="${T(com.mohsinkerai.adminlte.utils.TimeZoneUtils).convertTimeZone(row.createdOn, 'dd-MMM-yyyy HH:mm', 'Asia/Karachi')}"></td>
         </tr>
       </table>
     </div>

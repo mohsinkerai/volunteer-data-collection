@@ -4,15 +4,14 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.mohsinkerai.adminlte.base.SimpleBaseController;
 import com.mohsinkerai.adminlte.jamatkhana.Jamatkhana;
+import com.mohsinkerai.adminlte.person.status.PersonStatus;
+import com.mohsinkerai.adminlte.person.status.PersonStatusService;
 import com.mohsinkerai.adminlte.person.updates.PersonUpdates;
 import com.mohsinkerai.adminlte.person.updates.PersonUpdatesService;
 import com.mohsinkerai.adminlte.users.MyUser;
 import com.mohsinkerai.adminlte.users.MyUserService;
 import com.mohsinkerai.adminlte.utils.VerificationUtils;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,15 +35,18 @@ public class PersonController extends SimpleBaseController<Person> {
 
   private final MyUserService myUserService;
   private final PersonService personService;
+  private final PersonStatusService personStatusService;
   private final PersonUpdatesService personUpdatesService;
 
   protected PersonController(
     PersonService personService,
     MyUserService myUserService,
+    PersonStatusService personStatusService,
     PersonUpdatesService personUpdatesService) {
     super(personService);
     this.myUserService = myUserService;
     this.personService = personService;
+    this.personStatusService = personStatusService;
     this.personUpdatesService = personUpdatesService;
   }
 
@@ -92,6 +94,8 @@ public class PersonController extends SimpleBaseController<Person> {
   public String list(@PathVariable Integer pageNumber, Model model) {
     List<Person> page = baseService.findAll();
 
+    model.addAttribute("statusColor", personStatusService.getColorMap());
+
     int current = 1;
     int totalPages = 1;
     int begin = Math.max(1, current - PAGE_SIZE);
@@ -111,6 +115,8 @@ public class PersonController extends SimpleBaseController<Person> {
   public String jkList(Model model) {
     MyUser currentLoggedInUser = myUserService.getCurrentLoggedInUser();
     List<Person> list = personService.findByJamatkhanaIn(currentLoggedInUser.getJamatkhanas());
+
+    model.addAttribute("statusColor", personStatusService.getColorMap());
 
     int current = 1;
     int totalPages = 1;
@@ -163,8 +169,11 @@ public class PersonController extends SimpleBaseController<Person> {
 
     PersonUpdates personUpdates = new PersonUpdates();
     personUpdates.setPerson(person);
-
     model.addAttribute("data", personUpdates);
+
+    List<PersonStatus> personStatus = personStatusService.findAll();
+    model.addAttribute("statuses", personStatus);
+
     return personUpdatesViewPath() + "/form";
   }
 
@@ -204,6 +213,8 @@ public class PersonController extends SimpleBaseController<Person> {
     int totalPages = 1;
     int begin = Math.max(1, current - PAGE_SIZE);
     int end = Math.min(begin + PAGE_SIZE, totalPages == 0 ? 1 : totalPages);
+
+    model.addAttribute("statusColor", personStatusService.getColorMap());
 
     model.addAttribute("urlPath", urlPath());
 

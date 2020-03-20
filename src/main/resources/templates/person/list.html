@@ -37,7 +37,7 @@
         <tbody>
           <tr th:each="row : ${list}">
             <td th:text="${row.id}"></td>
-            <td th:text="${row.lastStatus}"></td>
+            <td class="badge" th:classappend="${'bg-' + statusColor.get(row.lastStatus)}" th:text="${row.lastStatus + ' '}"></td>
             <td th:text="${row.name}"></td>
             <td th:text="${row.gender}"></td>
             <td th:text="${row.jamatkhana.name}"></td>

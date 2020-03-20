@@ -18,6 +18,7 @@
         <li sec:authorize="hasAuthority('ADMIN')" th:classappend="${#httpServletRequest.requestURI.startsWith('/person')? 'active':''}"><a th:href="@{/person}"><i class="fa fa-circle-o"></i> All Jamati-Members</a></li>
         <li sec:authorize="!hasAuthority('ADMIN')" th:classappend="${#httpServletRequest.requestURI.startsWith('/person')? 'active':''}"><a th:href="@{/person/jk}"><i class="fa fa-circle-o"></i> Jamati-Members</a></li>
         <li><a th:href="@{/jamatkhana}" sec:authorize="hasAuthority('ADMIN')"><i class="fa fa-circle-o"></i>Council</a></li>
+        <li><a th:href="@{/person-status}" sec:authorize="hasAuthority('ADMIN')"><i class="fa fa-circle-o"></i>Status</a></li>
       </ul>
     </li>
     <li class="treeview" th:classappend="${#httpServletRequest.requestURI.startsWith('/customers')? 'active':''}"  sec:authorize="hasAuthority('ADMIN')">
