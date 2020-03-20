@@ -22,43 +22,52 @@
         <br clear="all"/>
       </div>
     </div>
+
     <div class="box-body no-padding">
-      <table class="table table-striped">
-        <tr>
+      <table id="myDataTable" class="table table-striped">
+        <thead>
           <th>ID</th>
+          <th>Last Status</th>
           <th>Name</th>
           <th>Gender</th>
           <th>Local Council</th>
+          <th>Last Updated</th>
           <th>Action</th>
-        </tr>
-        <tr th:each="row : ${list}">
-          <td th:text="${row.id}"></td>
-          <td th:text="${row.name}"></td>
-          <td th:text="${row.gender}"></td>
-          <td th:text="${row.jamatkhana.name}"></td>
-          <td>
-            <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/{urlPath}/edit/{rowId}(urlPath=${urlPath}, rowId=${row.id})}"><button class="btn btn-default">Edit</button></a>
-            <a sec:authorize="!hasAuthority('ADMIN')" th:if="${#temporals.createNow().minusDays(1).minusHours(4) < row.createdOn}" th:href="@{/{urlPath}/edit/{rowId}(urlPath=${urlPath}, rowId=${row.id})}"><button class="btn btn-default">Edit</button></a> -
-            <a sec:authorize="hasAuthority('LEAD')" th:href="@{/{urlPath}/{rowId}/updates/add(urlPath=${urlPath}, rowId=${row.id})}"><button class="btn btn-primary">Add Updates</button></a> -
-            <a sec:authorize="hasAuthority('LEAD')" th:href="@{/{urlPath}/{rowId}/updates(urlPath=${urlPath}, rowId=${row.id})}"><button class="btn btn-default">View Updates</button></a> -
-            <form sec:authorize="hasAuthority('ADMIN')" th:object="${row}" th:action="@{/{urlPath}/delete/{rowId}(urlPath=${urlPath}, rowId=${row.id})}" th:method="delete" style="display: inline" onsubmit="return (confirm('Sure your want to delete this entry?'))">
-              <input class="btn btn-danger" style="cursor: pointer" type="submit" value="Delete" />
-            </form>
-          </td>
-        </tr>
+        </thead>
+        <tbody>
+          <tr th:each="row : ${list}">
+            <td th:text="${row.id}"></td>
+            <td th:text="${row.lastStatus}"></td>
+            <td th:text="${row.name}"></td>
+            <td th:text="${row.gender}"></td>
+            <td th:text="${row.jamatkhana.name}"></td>
+            <td th:text="${row.updatedOn}"></td>
+            <td>
+              <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/{urlPath}/edit/{rowId}(urlPath=${urlPath}, rowId=${row.id})}"><button class="btn btn-default">Edit</button></a>
+              <a sec:authorize="!hasAuthority('ADMIN')" th:if="${#temporals.createNow().minusDays(1).minusHours(4) < row.createdOn}" th:href="@{/{urlPath}/edit/{rowId}(urlPath=${urlPath}, rowId=${row.id})}"><button class="btn btn-default">Edit</button></a> -
+              <a sec:authorize="hasAuthority('LEAD')" th:href="@{/{urlPath}/{rowId}/updates/add(urlPath=${urlPath}, rowId=${row.id})}"><button class="btn btn-primary">Add Updates</button></a> -
+              <a sec:authorize="hasAuthority('LEAD')" th:href="@{/{urlPath}/{rowId}/updates(urlPath=${urlPath}, rowId=${row.id})}"><button class="btn btn-default">View Updates</button></a> -
+              <form sec:authorize="hasAuthority('ADMIN')" th:object="${row}" th:action="@{/{urlPath}/delete/{rowId}(urlPath=${urlPath}, rowId=${row.id})}" th:method="delete" style="display: inline" onsubmit="return (confirm('Sure your want to delete this entry?'))">
+                <input class="btn btn-danger" style="cursor: pointer" type="submit" value="Delete" />
+              </form>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
-    <div class="box-footer clearfix">
-      <ul class="pagination pagination-sm no-margin pull-right">
-        <li><a th:href="@{/{urlPath}/{page}(urlPath=${urlPath},page=1)}">First</a></li>
-        <li th:each="p : ${#numbers.sequence(1, endIndex/beginIndex)}"
-            th:class="${p == currentIndex} ? 'active' : ''">
-          <a th:href="@{/{urlPath}/{page}(urlPath=${urlPath},page=${p})}" th:text="${p}"></a>
-        </li>
-        <li><a th:href="@{/{urlPath}/{page}(urlPath=${urlPath},page=${endIndex})}">Last</a></li>
-      </ul>
-    </div>
+    <br />
+
   </div>
 </div>
+<script layout:fragment="custom-script" th:inline="javascript">
+  $(document).ready(function(){
+    console.log("hip Hip hurray");
+  });
+
+  $(document).ready(function () {
+    $('#myDataTable').DataTable();
+    $('.dataTables_length').addClass('bs-select');
+  });
+</script>
 </body>
 </html>
