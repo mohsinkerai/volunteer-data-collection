@@ -112,6 +112,7 @@ public class PersonController extends SimpleBaseController<Person> {
   }
 
   @RequestMapping(value = "/jk", method = RequestMethod.GET)
+  @PreAuthorize("hasAuthority('USER')")
   public String jkList(Model model) {
     MyUser currentLoggedInUser = myUserService.getCurrentLoggedInUser();
     List<Person> list = personService.findByJamatkhanaIn(currentLoggedInUser.getJamatkhanas());
@@ -143,6 +144,7 @@ public class PersonController extends SimpleBaseController<Person> {
   }
 
   @Override
+  @PreAuthorize("hasAuthority('USER') || hasAuthority('ADMIN')")
   public String save(Person person, BindingResult bindingResult, Model model,
                      RedirectAttributes ra) {
     if (bindingResult.hasErrors()) {

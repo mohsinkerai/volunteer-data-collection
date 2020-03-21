@@ -22,6 +22,10 @@ spring:
     generate-ddl: true
     database: MYSQL
     show: true
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
   thymeleaf:
     cache: false
     check-template-location: true
@@ -46,6 +50,10 @@ server:
       directory: ./
     basedir: logs
 logging:
+  level:
+    org:
+      hibernate:
+        type: TRACE
   file:
     name: hbp.log
     path: logs
