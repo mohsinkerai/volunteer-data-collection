@@ -10,6 +10,7 @@ import com.mohsinkerai.adminlte.person.updates.PersonUpdates;
 import com.mohsinkerai.adminlte.person.updates.PersonUpdatesService;
 import com.mohsinkerai.adminlte.users.MyUser;
 import com.mohsinkerai.adminlte.users.MyUserService;
+import com.mohsinkerai.adminlte.utils.StatusMapperUtils;
 import com.mohsinkerai.adminlte.utils.VerificationUtils;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -154,7 +155,24 @@ public class PersonController extends SimpleBaseController<Person> {
       model.addAllAttributes(getAttributes());
       return viewPath() + "/form";
     }
+
+    boolean newPerson = person.getId()==null;
+    String recommendation = person.getRecommendation();
+    String remarks = person.getRemarks();
+    String status = StatusMapperUtils.getStatus(recommendation);
+    person.setLastStatus(status);
+    person.setLastRemarks(remarks);
+
     personService.save(person);
+
+    if(newPerson) {
+      PersonUpdates updates = new PersonUpdates();
+      updates.setStatus(status);
+      updates.setRemarks(remarks);
+      updates.setPerson(person);
+      personUpdatesService.save(updates);
+    }
+
     ra.addFlashAttribute("formSaved", String
       .format("Successfully Saved Jamati Memeber with Name <b><mark>%s</mark></b> and id <mark><b>%04d</b></mark>", person.getName(),
         person.getId()));
