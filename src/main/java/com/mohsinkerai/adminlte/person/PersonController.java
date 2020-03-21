@@ -172,9 +172,11 @@ public class PersonController extends SimpleBaseController<Person> {
     PersonUpdates personUpdates = new PersonUpdates();
     personUpdates.setPerson(person);
     model.addAttribute("data", personUpdates);
+    model.addAttribute("person", person);
 
     List<PersonStatus> personStatus = personStatusService.findAll();
     model.addAttribute("statuses", personStatus);
+    model.addAttribute("statusColor", personStatusService.getColorMap());
 
     return personUpdatesViewPath() + "/form";
   }

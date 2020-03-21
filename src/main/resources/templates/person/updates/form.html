@@ -13,13 +13,41 @@
   </ol>
 </section>
 <div layout:fragment="content">
+
+  <div class="box box-success">
+    <div class="box-header with-border">
+      <h3 class="box-title">Jamati Member Details</h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+      </div>
+      <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body" style="">
+      <div class="box box-widget widget-user-2">
+        <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class="widget-user-header bg-blue">
+          <!-- /.widget-user-image -->
+          <h4 class="widget-user-username"><span th:text="${person.name}"></span>&nbsp;|&nbsp;<span th:text="${person.contactNumber}"></span></h4>
+          <h5 class="widget-user-desc"><span th:text="${person.jamatkhana.name}"></span>
+            &nbsp;|&nbsp;<span th:text="${person.jamatkhanaName}"></span>
+          </h5>
+        </div>
+        <div class="box-footer no-padding">
+          <ul class="nav nav-stacked">
+            <li><a><b>Current Status:</b> <span class="badge" th:classappend="${'bg-' + statusColor.get(person.lastStatus)}" th:text="${person.lastStatus + ' '}">31</span></a></li>
+            <li><a><b>Current Remarks:</b> <span th:text="${person.lastRemarks + ' '}">31</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="box">
     <div class="box-header with-border">
-      <h3 class="box-title">Form</h3>
-      <div class="box-tools pull-right">
-        <a th:href="@{/{urlPath}(urlPath=${urlPath})}" type="button" class="btn btn-box-tool"><i
-          class="fa fa-list-ul"></i></a>
-      </div>
+      <h3 class="box-title">Revised Status and Details to Add</h3>
     </div>
     <form data-toggle="validator" role="form" th:object="${data}"
           th:action="@{/__${urlPath}__/save}" method="post" id="myform">
@@ -31,7 +59,7 @@
         <input type="hidden" th:field="*{person}"/>
 
         <div class="form-group">
-          <label for="remarks">Remarks to Add</label>
+          <label for="remarks">Revised Remarks to Add</label>
           <input type="text" required="true" class="form-control" th:field="*{remarks}" maxlength="200" minlength="3"
                  placeholder="Enter New Remarks to Add" id="remarks" data-error="Remarks to Add should be between 4 and 200 characters."/>
           <p class="text-danger" th:if="${#fields.hasErrors('remarks')}"
@@ -40,7 +68,7 @@
         </div>
 
         <div class="form-group">
-          <label for="status">Status</label>
+          <label for="status">Revised Status</label>
           <select th:field="*{status}" id="status" class="form-control">
             <option th:each="status : ${statuses}"
                     th:value="${status.name}"
