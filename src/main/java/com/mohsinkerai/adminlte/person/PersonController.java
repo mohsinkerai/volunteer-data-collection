@@ -113,7 +113,7 @@ public class PersonController extends SimpleBaseController<Person> {
   }
 
   @RequestMapping(value = "/jk", method = RequestMethod.GET)
-  @PreAuthorize("hasAuthority('USER')")
+  @PreAuthorize("hasAuthority('USER') || hasAuthority('LEAD')")
   public String jkList(Model model) {
     MyUser currentLoggedInUser = myUserService.getCurrentLoggedInUser();
     List<Person> list = personService.findByJamatkhanaIn(currentLoggedInUser.getJamatkhanas());
