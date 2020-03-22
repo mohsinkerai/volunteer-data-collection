@@ -2,12 +2,12 @@ spring:
   application:
     name: data-collection-portal
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     db: data_collection
     host: localhost
     port: 3306
     url: jdbc:mysql://${spring.datasource.host}:${spring.datasource.port}/${spring.datasource.db}?createDatabaseIfNotExist=true
-    username: mohsin
+    username: root
     password: password
     tomcat:
       initial-size: 6
@@ -24,8 +24,9 @@ spring:
     show: true
     properties:
       hibernate:
-        show_sql: true
-        format_sql: true
+        show_sql: false
+        format_sql: false
+        dialect: org.hibernate.dialect.MySQL8Dialect
   thymeleaf:
     cache: false
     check-template-location: true
@@ -53,7 +54,7 @@ logging:
   level:
     org:
       hibernate:
-        type: TRACE
+        type: INFO
   file:
     name: hbp.log
     path: logs
