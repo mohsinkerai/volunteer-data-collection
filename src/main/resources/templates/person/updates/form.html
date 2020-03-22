@@ -49,7 +49,7 @@
     <div class="box-header with-border">
       <h3 class="box-title">Revised Status and Details to Add</h3>
     </div>
-    <form data-toggle="validator" role="form" th:object="${data}"
+    <form data-toggle="validator" role="form" th:object="${data}" onsubmit="return checkForm(this);"
           th:action="@{/__${urlPath}__/save}" method="post" id="myform">
       <div class="box-body">
         <input type="hidden" th:field="*{id}"/>
@@ -88,25 +88,12 @@
 </div>
 
 <script layout:fragment="custom-script" th:inline="javascript">
-
-  $(document).ready(function () {
-    $('#myform').validator()
-  });
-
-  $(document).ready(function() {
-    $('#contactNumber').mask('000Z-0000000Z', {placeholder: "____-_______", translation: {
-        'Z': {
-          pattern: /[0-9]/, optional: true
-        }
-    }});
-
-    $('#enteredByContact').mask('000Z-0000000Z', {placeholder: "____-_______", translation: {
-        'Z': {
-          pattern: /[0-9]/, optional: true
-        }
-    }});
-  });
-  // https://stackoverflow.com/questions/48538692/thymeleaf-checkboxes-with-objects-list-from-database
+  function checkForm(form)
+  {
+    console.log("Form checked");
+    form.submit.disabled = true;
+    return true;
+  }
 </script>
 </body>
 </html>
