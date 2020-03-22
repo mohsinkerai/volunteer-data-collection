@@ -36,6 +36,18 @@ public class PersonService extends SimpleBaseService<Person> {
     return personRepository.findByCreatedByAndCreatedDateBetween(username, fromDate, toDate);
   }
 
+  public Person update(Person person) {
+    if (person.getId() == null || person.getCreatedDate() == null) {
+      person.setCreatedDate(LocalDate.now());
+    }
+    myUserService.getCurrentLoggedInUser()
+      .getJamatkhanas()
+      .stream()
+      .filter(jk -> jk.getName().equals(person.getJamatkhana().getName()))
+      .findAny().orElseThrow(() -> new RuntimeException("Invalid JK Selected !!"));
+    return personRepository.save(person);
+  }
+
   @Override
   public Person save(Person person) {
     if (person.getId() == null || person.getCreatedDate() == null) {

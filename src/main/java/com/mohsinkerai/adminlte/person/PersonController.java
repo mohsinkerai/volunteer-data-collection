@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.transaction.Transactional;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -88,6 +89,32 @@ public class PersonController extends SimpleBaseController<Person> {
   @PreAuthorize("hasAuthority('ADMIN')")
   public String delete(@PathVariable Long id) {
     return super.delete(id);
+  }
+
+  @Transactional
+  @PreAuthorize("hasAuthority('LEAD')")
+  @RequestMapping(value = "{person}/updates/add/save", method = RequestMethod.POST)
+  public String saveComments(PersonUpdates personUpdates, BindingResult bindingResult, Model model, @PathVariable Person person, final RedirectAttributes ra) {
+    if (bindingResult.hasErrors()) {
+      model.addAttribute("data", personUpdates);
+      model.addAttribute("urlPath", String.format("%s/%s/updates/add", urlPath(), person.getId()));
+      model.addAttribute("org.springframework.validation.BindingResult.data", bindingResult);
+      return personUpdatesViewPath() + "/form";
+    }
+
+    MyUser currentLoggedInUser = myUserService.getCurrentLoggedInUser();
+    VerificationUtils.hasValidJk(currentLoggedInUser, person);
+
+    personUpdatesService.save(personUpdates);
+    person.setLastRemarks(personUpdates.getRemarks());
+    person.setLastStatus(personUpdates.getStatus());
+    personService.update(person);
+
+    ra.addFlashAttribute("formSaved", String
+      .format("Added Updates on Jamati Member with Name <b><mark>%s</mark></b> and id <mark><b>%04d</b></mark>", person.getName(),
+        person.getId()));
+
+    return "redirect:/" + String.format("%s/%s/updates", urlPath(), person.getId());
   }
 
   @Override
@@ -197,31 +224,6 @@ public class PersonController extends SimpleBaseController<Person> {
     model.addAttribute("statusColor", personStatusService.getColorMap());
 
     return personUpdatesViewPath() + "/form";
-  }
-
-  @RequestMapping(value = "{person}/updates/add/save", method = RequestMethod.POST)
-  @PreAuthorize("hasAuthority('LEAD')")
-  public String saveComments(PersonUpdates personUpdates, BindingResult bindingResult, Model model, @PathVariable Person person, final RedirectAttributes ra) {
-    if (bindingResult.hasErrors()) {
-      model.addAttribute("data", personUpdates);
-      model.addAttribute("urlPath", String.format("%s/%s/updates/add", urlPath(), person.getId()));
-      model.addAttribute("org.springframework.validation.BindingResult.data", bindingResult);
-      return personUpdatesViewPath() + "/form";
-    }
-
-    MyUser currentLoggedInUser = myUserService.getCurrentLoggedInUser();
-    VerificationUtils.hasValidJk(currentLoggedInUser, person);
-
-    personUpdatesService.save(personUpdates);
-    person.setLastRemarks(personUpdates.getRemarks());
-    person.setLastStatus(personUpdates.getStatus());
-    personService.save(person);
-
-    ra.addFlashAttribute("formSaved", String
-      .format("Added Updates on Jamati Member with Name <b><mark>%s</mark></b> and id <mark><b>%04d</b></mark>", person.getName(),
-        person.getId()));
-
-    return "redirect:/" + String.format("%s/%s/updates", urlPath(), person.getId());
   }
 
   @RequestMapping("{person}/updates")
