@@ -12,6 +12,7 @@ import com.mohsinkerai.adminlte.users.MyUser;
 import com.mohsinkerai.adminlte.users.MyUserService;
 import com.mohsinkerai.adminlte.utils.StatusMapperUtils;
 import com.mohsinkerai.adminlte.utils.VerificationUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+@Slf4j
 @Controller
 @RequestMapping(PersonController.URL_PATH)
 public class PersonController extends SimpleBaseController<Person> {
@@ -85,11 +87,13 @@ public class PersonController extends SimpleBaseController<Person> {
     return ImmutableMap.of("jks", jamatkhanas);
   }
 
-  @Override
-  @PreAuthorize("hasAuthority('ADMIN')")
-  public String delete(@PathVariable Long id) {
-    return super.delete(id);
-  }
+//  @Override
+//  @PreAuthorize("hasAuthority('ADMIN')")
+//  @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+//  public String delete(@PathVariable Long id) {
+//    log.info("Request to Delete Person with Details {}", id);
+//    return super.delete(id);
+//  }
 
   @Transactional
   @PreAuthorize("hasAuthority('LEAD')")

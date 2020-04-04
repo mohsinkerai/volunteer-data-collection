@@ -56,7 +56,7 @@ logging:
       hibernate:
         type: INFO
   file:
-    name: hbp.log
+    name: logs/hbp.log
     path: logs
     max-history: 3
     max-size: 1MB

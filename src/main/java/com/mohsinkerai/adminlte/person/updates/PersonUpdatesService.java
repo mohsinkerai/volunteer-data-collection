@@ -13,4 +13,8 @@ public class PersonUpdatesService extends SimpleBaseService<PersonUpdates> {
     super(personUpdatesRepository);
     this.personUpdatesRepository = personUpdatesRepository;
   }
+
+  public void deleteByPersonId(long personId) {
+    personUpdatesRepository.deleteByPersonId(personId);
+  }
 }

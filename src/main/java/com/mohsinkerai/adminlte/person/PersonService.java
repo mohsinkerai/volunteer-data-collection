@@ -4,6 +4,7 @@ import com.mohsinkerai.adminlte.base.BaseEntity;
 import com.mohsinkerai.adminlte.base.SimpleBaseService;
 import com.mohsinkerai.adminlte.jamatkhana.Jamatkhana;
 import com.mohsinkerai.adminlte.person.updates.PersonUpdates;
+import com.mohsinkerai.adminlte.person.updates.PersonUpdatesService;
 import com.mohsinkerai.adminlte.report.dto.JamatkhanaSummaryDto;
 import com.mohsinkerai.adminlte.users.MyUser;
 import com.mohsinkerai.adminlte.users.MyUserService;
@@ -16,18 +17,19 @@ import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class PersonService extends SimpleBaseService<Person> {
 
   private final PersonRepository personRepository;
+  private final PersonUpdatesService personUpdatesService;
   private final MyUserService myUserService;
 
   protected PersonService(
-    PersonRepository personRepository, MyUserService myUserService) {
+    PersonRepository personRepository, PersonUpdatesService personUpdatesService, MyUserService myUserService) {
     super(personRepository);
     this.personRepository = personRepository;
+    this.personUpdatesService = personUpdatesService;
     this.myUserService = myUserService;
   }
 
@@ -46,6 +48,13 @@ public class PersonService extends SimpleBaseService<Person> {
       .filter(jk -> jk.getName().equals(person.getJamatkhana().getName()))
       .findAny().orElseThrow(() -> new RuntimeException("Invalid JK Selected !!"));
     return personRepository.save(person);
+  }
+
+  @Override
+  @Transactional
+  public void delete(Long id) {
+    personUpdatesService.deleteByPersonId(id);
+    super.delete(id);
   }
 
   @Override

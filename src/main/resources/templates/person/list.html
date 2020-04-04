@@ -65,7 +65,9 @@
   });
 
   $(document).ready(function () {
-    $('#myDataTable').DataTable();
+    $('#myDataTable').DataTable({
+        stateSave: true
+    });
     $('.dataTables_length').addClass('bs-select');
   });
 </script>
