@@ -76,4 +76,12 @@
       <column name="last_remarks" afterColumn="last_status" type="varchar(2000)"></column>
     </addColumn>
   </changeSet>
+  <changeSet id="person-05" author="mohsin.kerai">
+    <addColumn tableName="person">
+      <column name="last_covid_positive_status" afterColumn="last_remarks" type="varchar(255)" defaultValue="NA"></column>
+      <column name="last_source_of_exposure_details" afterColumn="last_covid_positive_status" type="varchar(2000)" defaultValue=""></column>
+      <column name="workplace_occupation_details" afterColumn="last_source_of_exposure_details" type="varchar(255)" defaultValue=""></column>
+      <column name="family_members_count" afterColumn="workplace_occupation_details" type="int" defaultValue="0"></column>
+    </addColumn>
+  </changeSet>
 </databaseChangeLog>

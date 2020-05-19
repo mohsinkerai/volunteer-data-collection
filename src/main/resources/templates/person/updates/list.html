@@ -42,6 +42,7 @@
               <li><a>Fever <span class="pull-right badge bg-green" th:text="${person.fever?'Yes':'No'}">31</span></a></li>
               <li><a>Cough <span class="pull-right badge bg-green" th:text="${person.cough?'Yes':'No'}">31</span></a></li>
               <li><a>Shortness Of Breath <span class="pull-right badge bg-green" th:text="${person.shortnessOfBreath?'Yes':'No'}">31</span></a></li>
+              <li><a>Source Of Exposure Details <span class="pull-right badge" th:text="${person.lastSourceOfExposureDetails}">31</span></a></li>
             </ul>
           </div>
         </div>
@@ -56,12 +57,14 @@
       <table class="table table-striped">
         <tr>
           <th>Status</th>
+          <th>Covid Positive Status</th>
           <th>Remarks</th>
           <th>Added By</th>
           <th>Added On</th>
         </tr>
         <tr th:each="row : ${list}">
           <td class="badge" th:classappend="${'bg-' + statusColor.get(row.status)}" th:text="${row.status}"></td>
+          <td th:text="${row.covidPositiveStatus}"></td>
           <td th:text="${row.remarks}"></td>
           <td th:text="${row.createdBy}"></td>
           <td th:text="${T(com.mohsinkerai.adminlte.utils.TimeZoneUtils).convertTimeZone(row.createdOn, 'dd-MMM-yyyy HH:mm', 'Asia/Karachi')}"></td>

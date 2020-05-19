@@ -34,4 +34,10 @@
       constraintName="person_updates_person_id_fk"
       referencedTableName="person" referencedColumnNames="id"/>
   </changeSet>
+  <changeSet id="person_updates-03" author="mohsin.kerai">
+    <addColumn tableName="person_updates">
+      <column name="covid_positive_status" afterColumn="person_id" type="varchar(255)" defaultValue="NA"></column>
+      <column name="source_of_exposure_details" afterColumn="covid_positive_status" type="varchar(2000)" defaultValue=""></column>
+    </addColumn>
+  </changeSet>
 </databaseChangeLog>

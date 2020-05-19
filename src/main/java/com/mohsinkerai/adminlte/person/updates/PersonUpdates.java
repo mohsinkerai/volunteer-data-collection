@@ -16,6 +16,8 @@ public class PersonUpdates extends BaseEntity {
 
   private String status;
   private String remarks;
+  private String covidPositiveStatus;
+  private String sourceOfExposureDetails;
 
   @ManyToOne
   @JoinColumn(name = "person_id")

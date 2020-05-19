@@ -79,6 +79,22 @@
              th:errors="*{status}"></p>
         </div>
 
+        <div class="form-group">
+          <label for="covidPositiveStatus">Covid Positive Status</label>
+          <select th:field="*{covidPositiveStatus}" id="covidPositiveStatus" class="form-control">
+            <option value="YES">Yes</option>
+            <option value="NO">No</option>
+            <option value="NA">Not Sure</option>
+          </select>
+          <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group">
+          <label for="sourceOfExposureDetails">Source Of Exposure Details</label>
+          <input type="text" placeholder="Source Of Exposure Details" class="form-control" th:field="*{sourceOfExposureDetails}" id="sourceOfExposureDetails" maxlength="500" data-error="sourceOfExposureDetails"/>
+          <p class="text-danger" th:if="${#fields.hasErrors('sourceOfExposureDetails')}" th:errors="*{sourceOfExposureDetails}"></p>
+          <div class="help-block with-errors"></div>
+        </div>
+
       </div>
       <div class="box-footer">
         <button id="submit" type="submit" class="btn btn-primary">Save</button>

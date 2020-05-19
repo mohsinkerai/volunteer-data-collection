@@ -150,6 +150,7 @@
             <option value="Stable and discharged">Stable (Nothing Required)</option>
             <option value="Isolation at Home">Isolation at Home</option>
             <option value="Refer to Hospital">Refer to Hospital</option>
+            <option value="Refer to Expo Centre">Refer to Expo Centre</option>
           </select>
           <p class="text-danger" th:if="${#fields.hasErrors('recommendation')}"
              th:errors="*{recommendation}"></p>
@@ -177,6 +178,34 @@
           <label for="remarks">Remarks</label>
           <input type="text" placeholder="Remarks" class="form-control" th:field="*{remarks}" id="remarks" maxlength="255" data-error="Remarks"/>
           <p class="text-danger" th:if="${#fields.hasErrors('remarks')}" th:errors="*{remarks}"></p>
+          <div class="help-block with-errors"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="lastCovidPositiveStatus">Covid Positive Status</label>
+          <select th:field="*{lastCovidPositiveStatus}" id="lastCovidPositiveStatus" class="form-control">
+            <option value="YES">Yes</option>
+            <option value="NO">No</option>
+            <option value="NA">Not Sure</option>
+          </select>
+          <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group">
+          <label for="lastSourceOfExposureDetails">Source Of Exposure Details</label>
+          <input type="text" placeholder="Source Of Exposure Details" class="form-control" th:field="*{lastSourceOfExposureDetails}" id="lastSourceOfExposureDetails" maxlength="500" data-error="lastSourceOfExposureDetails"/>
+          <p class="text-danger" th:if="${#fields.hasErrors('lastSourceOfExposureDetails')}" th:errors="*{lastSourceOfExposureDetails}"></p>
+          <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group">
+          <label for="workplaceOccupationDetails">Workplace Occupation Details</label>
+          <input type="text" placeholder="Workplace Occupation Details" class="form-control" th:field="*{workplaceOccupationDetails}" id="workplaceOccupationDetails" maxlength="255" data-error="workplaceOccupationDetails"/>
+          <p class="text-danger" th:if="${#fields.hasErrors('workplaceOccupationDetails')}" th:errors="*{workplaceOccupationDetails}"></p>
+          <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group">
+          <label for="familyMembersCount">Family Members Count</label>
+          <input type="number" placeholder="Family Members Count" class="form-control" th:field="*{familyMembersCount}" id="familyMembersCount" min="1" max="15" data-error="Remarks"/>
+          <p class="text-danger" th:if="${#fields.hasErrors('familyMembersCount')}" th:errors="*{familyMembersCount}"></p>
           <div class="help-block with-errors"></div>
         </div>
 

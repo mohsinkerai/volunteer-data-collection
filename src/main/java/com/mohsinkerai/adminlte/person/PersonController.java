@@ -87,14 +87,6 @@ public class PersonController extends SimpleBaseController<Person> {
     return ImmutableMap.of("jks", jamatkhanas);
   }
 
-//  @Override
-//  @PreAuthorize("hasAuthority('ADMIN')")
-//  @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
-//  public String delete(@PathVariable Long id) {
-//    log.info("Request to Delete Person with Details {}", id);
-//    return super.delete(id);
-//  }
-
   @Transactional
   @PreAuthorize("hasAuthority('LEAD')")
   @RequestMapping(value = "{person}/updates/add/save", method = RequestMethod.POST)
@@ -112,6 +104,8 @@ public class PersonController extends SimpleBaseController<Person> {
     personUpdatesService.save(personUpdates);
     person.setLastRemarks(personUpdates.getRemarks());
     person.setLastStatus(personUpdates.getStatus());
+    person.setLastCovidPositiveStatus(personUpdates.getCovidPositiveStatus());
+    person.setLastSourceOfExposureDetails(personUpdates.getSourceOfExposureDetails());
     personService.update(person);
 
     ra.addFlashAttribute("formSaved", String
@@ -200,6 +194,8 @@ public class PersonController extends SimpleBaseController<Person> {
       PersonUpdates updates = new PersonUpdates();
       updates.setStatus(status);
       updates.setRemarks(remarks);
+      updates.setCovidPositiveStatus(person.getLastCovidPositiveStatus());
+      updates.setSourceOfExposureDetails(person.getLastSourceOfExposureDetails());
       updates.setPerson(person);
       personUpdatesService.save(updates);
     }
@@ -220,6 +216,8 @@ public class PersonController extends SimpleBaseController<Person> {
 
     PersonUpdates personUpdates = new PersonUpdates();
     personUpdates.setPerson(person);
+    personUpdates.setCovidPositiveStatus(person.getLastCovidPositiveStatus());
+    personUpdates.setSourceOfExposureDetails(person.getLastSourceOfExposureDetails());
     model.addAttribute("data", personUpdates);
     model.addAttribute("person", person);
 

@@ -3,6 +3,7 @@ package com.mohsinkerai.adminlte.utils;
 import com.google.common.collect.ImmutableMap;
 
 import java.util.Map;
+import java.util.Optional;
 
 public class StatusMapperUtils {
 
@@ -14,6 +15,8 @@ public class StatusMapperUtils {
     .build();
 
   public static String getStatus(String recommendation) {
-    return recommendationToStatusMap.get(recommendation);
+    return Optional.ofNullable(recommendation)
+      .map(recommendationToStatusMap::get)
+      .orElse(recommendation);
   }
 }

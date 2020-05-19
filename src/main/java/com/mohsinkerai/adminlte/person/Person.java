@@ -57,4 +57,9 @@ public class Person extends BaseEntity {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
   private List<PersonUpdates> personUpdates;
+
+  private String lastCovidPositiveStatus;
+  private String lastSourceOfExposureDetails;
+  private String workplaceOccupationDetails;
+  private Integer familyMembersCount = 0;
 }
