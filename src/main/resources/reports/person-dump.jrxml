@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="person_dump" pageWidth="3670" pageHeight="2384" orientation="Landscape" columnWidth="3670" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="9ebe9e5e-c372-42e3-84b8-a499e09fbc88">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="person_dump" pageWidth="4000" pageHeight="2384" orientation="Landscape" columnWidth="4000" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="9ebe9e5e-c372-42e3-84b8-a499e09fbc88">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="net.sf.jasperreports.export.xls.white.page.background" value="false"/>
 	<queryString>
@@ -86,6 +86,18 @@
 	</field>
 	<field name="version" class="java.lang.Long">
 		<fieldDescription><![CDATA[version]]></fieldDescription>
+	</field>
+	<field name="lastSourceOfExposureDetails" class="java.lang.String">
+		<fieldDescription><![CDATA[lastSourceOfExposureDetails]]></fieldDescription>
+	</field>
+	<field name="lastCovidPositiveStatus" class="java.lang.String">
+		<fieldDescription><![CDATA[lastCovidPositiveStatus]]></fieldDescription>
+	</field>
+	<field name="workplaceOccupationDetails" class="java.lang.String">
+		<fieldDescription><![CDATA[workplaceOccupationDetails]]></fieldDescription>
+	</field>
+	<field name="familyMembersCount" class="java.lang.Integer">
+		<fieldDescription><![CDATA[familyMembersCount]]></fieldDescription>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -282,7 +294,7 @@
 				<text><![CDATA[Remarks]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3110" y="0" width="140" height="30" uuid="b5e7cb25-3752-4b5d-9ce4-30bf83842ede">
+				<reportElement x="3110" y="0" width="120" height="30" uuid="b5e7cb25-3752-4b5d-9ce4-30bf83842ede">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5c01d574-a132-48fe-b5ba-814da9337de1"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -291,7 +303,7 @@
 				<text><![CDATA[Created On]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3250" y="0" width="140" height="30" uuid="30457fd1-3532-4757-a31d-20ca0c5fb9b2">
+				<reportElement x="3230" y="0" width="120" height="30" uuid="30457fd1-3532-4757-a31d-20ca0c5fb9b2">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d62b72b4-8e95-45d4-8b8c-d5bea4f7dcd3"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -300,7 +312,7 @@
 				<text><![CDATA[Created By]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3390" y="0" width="140" height="30" uuid="2f850688-0d40-408f-97bb-5f9be9c20e87">
+				<reportElement x="3350" y="0" width="120" height="30" uuid="2f850688-0d40-408f-97bb-5f9be9c20e87">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e3778893-f105-444a-b479-9ff5871f802e"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -309,7 +321,7 @@
 				<text><![CDATA[Updated On]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3530" y="0" width="140" height="30" uuid="f1754c8b-bdad-4aad-93a7-00550279c549">
+				<reportElement x="3470" y="0" width="120" height="30" uuid="f1754c8b-bdad-4aad-93a7-00550279c549">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4ce0129a-b517-488a-9dff-26883db8a696"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -334,6 +346,46 @@
 					<font fontName="Serif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Last Remarks]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3590" y="0" width="160" height="30" uuid="2a06e6f3-7d02-4795-9835-49cc9f38352d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4ce0129a-b517-488a-9dff-26883db8a696"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Exposure Details]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3750" y="0" width="100" height="30" uuid="7efe9f8f-e5c7-466c-8536-6af9047c803e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4ce0129a-b517-488a-9dff-26883db8a696"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COVID Positive]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3850" y="0" width="60" height="30" uuid="c8ae6ffc-c4e5-447f-ab91-d9b79578a3e3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4ce0129a-b517-488a-9dff-26883db8a696"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Family Members]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3910" y="0" width="90" height="30" uuid="7c01f531-2ca5-44e1-a713-c26e8cbcc129">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4ce0129a-b517-488a-9dff-26883db8a696"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Occupation Details]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -532,7 +584,7 @@
 				<textFieldExpression><![CDATA[$F{remarks}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="ScaleFont">
-				<reportElement x="3110" y="0" width="140" height="40" uuid="49b1fffa-c367-422c-a865-ade30a836f94">
+				<reportElement x="3110" y="0" width="120" height="40" uuid="49b1fffa-c367-422c-a865-ade30a836f94">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5c01d574-a132-48fe-b5ba-814da9337de1"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -542,7 +594,7 @@
 				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm").withZone(java.time.ZoneId.of("Asia/Karachi")).format($F{createdOn}.atZone(java.time.ZoneId.systemDefault()).toInstant());]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="ScaleFont">
-				<reportElement x="3250" y="0" width="140" height="40" uuid="ec87c662-469c-4fc2-8cac-667cf802a376">
+				<reportElement x="3230" y="0" width="120" height="40" uuid="ec87c662-469c-4fc2-8cac-667cf802a376">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d62b72b4-8e95-45d4-8b8c-d5bea4f7dcd3"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -552,7 +604,7 @@
 				<textFieldExpression><![CDATA[$F{createdBy}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="ScaleFont">
-				<reportElement x="3390" y="0" width="140" height="40" uuid="3fb5a83e-5ac2-40b8-8f0a-331420425f00">
+				<reportElement x="3350" y="0" width="120" height="40" uuid="3fb5a83e-5ac2-40b8-8f0a-331420425f00">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e3778893-f105-444a-b479-9ff5871f802e"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -562,7 +614,7 @@
 				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm").withZone(java.time.ZoneId.of("Asia/Karachi")).format($F{updatedOn}.atZone(java.time.ZoneId.systemDefault()).toInstant());]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="ScaleFont">
-				<reportElement x="3530" y="0" width="140" height="40" uuid="7958517a-3f8f-45a1-a1e1-394f77728f34">
+				<reportElement x="3470" y="0" width="120" height="40" uuid="7958517a-3f8f-45a1-a1e1-394f77728f34">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4ce0129a-b517-488a-9dff-26883db8a696"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -591,6 +643,54 @@
 					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{lastRemarks}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="3590" y="0" width="160" height="40" uuid="de709253-8122-4d2b-a42c-7c904bef3c34">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4ce0129a-b517-488a-9dff-26883db8a696"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lastSourceOfExposureDetails}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="3750" y="0" width="100" height="40" uuid="b10d3582-8eb1-40e6-9f36-75297552fd60">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4ce0129a-b517-488a-9dff-26883db8a696"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lastCovidPositiveStatus}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="3850" y="0" width="60" height="40" uuid="7c3a9fce-697a-447a-bca0-71022c7c6a70">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4ce0129a-b517-488a-9dff-26883db8a696"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{familyMembersCount}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="3910" y="0" width="90" height="40" uuid="ecac0272-5380-4992-a159-48185e35f115">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4ce0129a-b517-488a-9dff-26883db8a696"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{workplaceOccupationDetails}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
